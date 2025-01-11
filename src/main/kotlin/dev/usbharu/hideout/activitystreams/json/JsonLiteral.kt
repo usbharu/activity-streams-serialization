@@ -23,17 +23,27 @@ data class JsonString(val value: String) : JsonLiteral() {
         return value.hashCode()
     }
 
-
+    override fun toString(): String {
+        return "\"$value\""
+    }
 }
 
 data class JsonNumber(val value: Double) : JsonLiteral() {
     override val valueAsString: String
         get() = value.toString()
+
+    override fun toString(): String {
+        return "$value"
+    }
 }
 
 data class JsonBoolean(val value: Boolean) : JsonLiteral() {
     override val valueAsString: String
         get() = value.toString()
+
+    override fun toString(): String {
+        return "$value"
+    }
 }
 
 object JsonNull : JsonNode, JsonLiteral() {
@@ -41,4 +51,10 @@ object JsonNull : JsonNode, JsonLiteral() {
         get() = NodeType.Null
     override val valueAsString: String
         get() = "null"
+
+    override fun toString(): String {
+        return "null"
+    }
+
+
 }

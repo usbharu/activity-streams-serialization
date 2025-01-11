@@ -26,10 +26,7 @@ class JsonObject(private val map: MutableMap<String, JsonNode>) : JsonNode, Muta
     }
 
     override fun toString(): String {
-        return "JsonObject(" +
-                "map=$map, " +
-                "type=$type" +
-                ")"
+        return "{${map.entries.joinToString { "\"${it.key}\":${it.value}" }}}"
     }
 
 

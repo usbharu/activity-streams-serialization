@@ -17,10 +17,7 @@ class JsonArray(private val array: MutableList<JsonNode>) : JsonNode, MutableLis
     }
 
     override fun toString(): String {
-        return "JsonArray(" +
-                "array=$array, " +
-                "type=$type" +
-                ")"
+        return "[$array]"
     }
 
 
