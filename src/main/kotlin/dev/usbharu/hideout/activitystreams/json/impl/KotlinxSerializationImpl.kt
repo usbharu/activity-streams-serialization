@@ -1,12 +1,10 @@
 package dev.usbharu.hideout.activitystreams.json.impl
 
-import dev.usbharu.hideout.activitystreams.json.JsonLiteral
-import dev.usbharu.hideout.activitystreams.json.JsonNode
-import dev.usbharu.hideout.activitystreams.json.JsonString
-import dev.usbharu.hideout.activitystreams.json.toJsonArray
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
+import dev.usbharu.hideout.activitystreams.json.*
 import kotlinx.serialization.json.*
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
 
 
 object KotlinxSerializationImpl {
@@ -16,7 +14,18 @@ object KotlinxSerializationImpl {
             is JsonObject -> dev.usbharu.hideout.activitystreams.json.JsonObject(jsonElement.map { it.key to convert(it.value) }
                 .toMap().toMutableMap())
 
-            is JsonPrimitive -> JsonString(jsonElement.content) //todo ちゃんと型を見る
+            is JsonPrimitive -> {
+                if (jsonElement.isString) {
+                    JsonString(jsonElement.content)
+                } else if (jsonElement.booleanOrNull != null) {
+                    JsonBoolean(jsonElement.boolean)
+                } else if (jsonElement.doubleOrNull != null) {
+                    JsonNumber(jsonElement.double)
+                } else {
+                    JsonString(jsonElement.content)
+                }
+            }
+
             JsonNull -> dev.usbharu.hideout.activitystreams.json.JsonNull
         }
     }

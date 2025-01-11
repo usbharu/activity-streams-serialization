@@ -43,3 +43,14 @@ interface JsonLd {
         )
     }
 }
+
+fun <T : JsonLd> JsonLd.asTypeOrNull(clazz: Class<T>): T? {
+    return this as? T
+}
+
+inline fun <reified T : JsonLd> JsonLd.asTypeOfNull(type: String): T? {
+    if (this.type.contains(type).not()) {
+        return null
+    }
+    return this as? T
+}

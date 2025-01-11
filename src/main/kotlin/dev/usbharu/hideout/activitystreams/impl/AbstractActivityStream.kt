@@ -1,16 +1,13 @@
 package dev.usbharu.hideout.activitystreams.impl
 
-import dev.usbharu.hideout.activitystreams.Activity
-import dev.usbharu.hideout.activitystreams.JsonLd
-import dev.usbharu.hideout.activitystreams.Object
-import dev.usbharu.hideout.activitystreams.ObjectOrLink
+import dev.usbharu.hideout.activitystreams.*
+import dev.usbharu.hideout.activitystreams.Collection
 
-abstract class AbstractActivityStream : Activity, JsonLd, Object, ObjectOrLink {
+abstract class AbstractActivityStream : Activity, JsonLd, Object, ObjectOrLink, CollectionPage, Collection,
+    OrderedCollection, OrderedCollectionPage, Image, ImageOrLink, UriOrLink, Link, Note {
     override fun isObject(): Boolean {
         return true //todo
     }
 
-    override fun isLink(): Boolean {
-        return type.contains("https://www.w3.org/ns/activitystreams#Link")
-    }
+
 }

@@ -49,4 +49,11 @@ interface JsonNode {
         }
         return this as? JsonString
     }
+
+    fun asNumberLiteralOrNull(): JsonNumber? {
+        if (isLiteral.not()) {
+            return null
+        }
+        return this as? JsonNumber
+    }
 }

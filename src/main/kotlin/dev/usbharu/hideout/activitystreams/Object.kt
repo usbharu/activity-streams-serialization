@@ -53,7 +53,7 @@ interface Object : ObjectOrLink, JsonLd {
 
     var replies: Collection?
         get() {
-            val jsonNode = jsonObject.obtain(Properties.REPLIES) ?: return null
+            val jsonNode = jsonObject.obtain(Properties.REPLIES)?.asArray()?.firstOrNull() ?: return null
             require(jsonNode.isObject)
             return ObjectFactory.factory(jsonNode) as Collection
         }
@@ -177,25 +177,7 @@ interface Object : ObjectOrLink, JsonLd {
         }
     }
 
-    var name: List<LangString>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.NAME) ?: return emptyList()
 
-            return jsonNode.asArray().map {
-                require(it.isObject)
-                it as JsonObject
-                LangString(
-                    it[Properties.LANGUAGE]?.asStringLiteralOrNull()?.value,
-                    it[Properties.VALUE]!!.asStringLiteralOrNull()?.value.toString()
-                )
-            }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.NAME,
-                value.map { it.toJsonObject() }.toJsonArray()
-            )
-        }
     var content: List<LangString>
         get() {
             val jsonNode = jsonObject.obtain(Properties.CONTENT) ?: return emptyList()

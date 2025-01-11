@@ -20,6 +20,6 @@ data class LangString(val language: String? = null, val value: String) {
     }
 }
 
-fun List<LangString>.getAsMap(): Map<String, String> {
-    return associate { (it.language ?: "default") to it.value }
+fun List<LangString>?.getAsMap(): Map<String, String> {
+    return orEmpty().associate { (it.language ?: "default") to it.value }
 }

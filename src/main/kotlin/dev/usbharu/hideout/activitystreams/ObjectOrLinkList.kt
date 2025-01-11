@@ -1,7 +1,7 @@
-package dev.usbharu.hideout.activitystreams.json
+package dev.usbharu.hideout.activitystreams
 
-import dev.usbharu.hideout.activitystreams.ObjectFactory
-import dev.usbharu.hideout.activitystreams.ObjectOrLink
+import dev.usbharu.hideout.activitystreams.json.JsonObject
+import dev.usbharu.hideout.activitystreams.json.toJsonArray
 import kotlin.reflect.KProperty
 
 class ObjectOrLinkList(private val jsonObject: JsonObject, private val key: String) {
