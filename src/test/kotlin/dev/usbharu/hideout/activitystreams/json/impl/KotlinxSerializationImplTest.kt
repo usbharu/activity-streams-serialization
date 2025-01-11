@@ -1,8 +1,9 @@
 package dev.usbharu.hideout.activitystreams.json.impl
 
 import dev.usbharu.hideout.activitystreams.Activity
-import dev.usbharu.hideout.activitystreams.Object
 import dev.usbharu.hideout.activitystreams.ObjectFactory
+import dev.usbharu.hideout.activitystreams.getAsMap
+import dev.usbharu.hideout.activitystreams.objects
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 
@@ -63,7 +64,7 @@ class KotlinxSerializationImplTest {
         println(actor.map { it.type })
         println(activity.type)
         println(activity.`object`)
-        println(activity.`object`.map { it as Object }.map { it.content })
+        println(activity.`object`.objects().map { it.content.getAsMap() })
         println(activity.published)
     }
 }

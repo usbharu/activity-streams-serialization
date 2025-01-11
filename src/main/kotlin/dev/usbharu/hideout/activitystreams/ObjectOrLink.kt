@@ -1,8 +1,14 @@
 package dev.usbharu.hideout.activitystreams
 
-import dev.usbharu.hideout.activitystreams.json.JsonObject
-import dev.usbharu.hideout.activitystreams.json.JsonString
-import java.net.URI
-
 interface ObjectOrLink : JsonLd {
+    fun isObject(): Boolean
+    fun isLink(): Boolean
+}
+
+fun List<ObjectOrLink>.objects(): List<Object> {
+    return this.filter { it.isObject() }.map { it as Object }
+}
+
+fun List<ObjectOrLink>.links(): List<ObjectOrLink> { //todo linkに変える
+    return this.filter { it.isLink() }
 }

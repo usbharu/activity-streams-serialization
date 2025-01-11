@@ -1,12 +1,10 @@
 package dev.usbharu.hideout.activitystreams
 
-import dev.usbharu.hideout.activitystreams.json.toJsonArray
-
 interface Activity : Object {
     var actor: List<ObjectOrLink>
-        get() = getAsObjectOrLink("https://www.w3.org/ns/activitystreams#actor")
-        set(value) = setAsObjectOrLink("https://www.w3.org/ns/activitystreams#actor", value)
+        get() = getAsObjectOrLink(Properties.ACTOR)
+        set(value) = setAsObjectOrLink(Properties.ACTOR, value)
     var `object`: List<ObjectOrLink>
-        get() = getAsObjectOrLink("https://www.w3.org/ns/activitystreams#object")
-        set(value) = setAsObjectOrLink("https://www.w3.org/ns/activitystreams#object", value)
+        get() = getAsObjectOrLink(Properties.OBJECT)
+        set(value) = setAsObjectOrLink(Properties.OBJECT, value)
 }

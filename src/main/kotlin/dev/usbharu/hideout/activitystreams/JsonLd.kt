@@ -1,5 +1,6 @@
 package dev.usbharu.hideout.activitystreams
 
+import dev.usbharu.hideout.activitystreams.Properties.ID
 import dev.usbharu.hideout.activitystreams.json.JsonNode
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString
@@ -15,19 +16,19 @@ interface JsonLd {
         }
     var type: List<String>
         get() {
-            return jsonObject["@type"]?.asArray()?.mapNotNull { it.asStringLiteralOrNull()?.value }
+            return jsonObject[Properties.TYPE]?.asArray()?.mapNotNull { it.asStringLiteralOrNull()?.value }
                 ?: return emptyList()
         }
         set(value) {
-            return jsonObject.setOrRemove("@type", value.map { JsonString(it) }.toJsonArray())
+            return jsonObject.setOrRemove(Properties.TYPE, value.map { JsonString(it) }.toJsonArray())
         }
     var id: URI?
         get() {
-            val string = jsonObject.obtain("@id")?.asStringLiteralOrNull() ?: return null
+            val string = jsonObject.obtain(ID)?.asStringLiteralOrNull() ?: return null
             return URI.create(string.value)
         }
         set(value) {
-            jsonObject.setOrRemove("@id", value?.toString()?.let { JsonString(it) })
+            jsonObject.setOrRemove(ID, value?.toString()?.let { JsonString(it) })
         }
 
     fun getAsObjectOrLink(id: String): List<ObjectOrLink> {

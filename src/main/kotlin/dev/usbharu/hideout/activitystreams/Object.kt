@@ -1,6 +1,5 @@
 package dev.usbharu.hideout.activitystreams
 
-import dev.usbharu.hideout.activitystreams.json.JsonNode
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString
 import dev.usbharu.hideout.activitystreams.json.toJsonArray
@@ -10,27 +9,27 @@ interface Object : ObjectOrLink, JsonLd {
 
     var published: OffsetDateTime?
         get() {
-            val jsonNode = jsonObject.obtain("https://www.w3.org/ns/activitystreams#published") ?: return null
-            return jsonNode.asArray().mapNotNull {
+            val jsonNode = jsonObject.obtain(Properties.PUBLISHED) ?: return null
+            return jsonNode.asArray().firstNotNullOf {
                 require(it.isObject)
                 it as JsonObject
-                if (it["@type"] != JsonString("http://www.w3.org/2001/XMLSchema#dateTime")) {
+                if (it[Properties.TYPE] != JsonString("http://www.w3.org/2001/XMLSchema#dateTime")) {
                     null
                 } else {
-                    OffsetDateTime.parse(it["@value"]?.asStringLiteralOrNull()?.value.toString())
+                    OffsetDateTime.parse(it[Properties.VALUE]?.asStringLiteralOrNull()?.value.toString())
                 }
-            }.first()
+            }
         }
         set(value) {
             if (value == null) {
-                jsonObject.remove("https://www.w3.org/ns/activitystreams#published")
+                jsonObject.remove(Properties.PUBLISHED)
             }
             jsonObject.setOrRemove(
-                "https://www.w3.org/ns/activitystreams#published", listOf(
+                Properties.PUBLISHED, listOf(
                     JsonObject(
                         mutableMapOf(
-                            "@type" to JsonString("http://www.w3.org/2001/XMLSchema#dateTime"),
-                            "@value" to JsonString(
+                            Properties.TYPE to JsonString("http://www.w3.org/2001/XMLSchema#dateTime"),
+                            Properties.VALUE to JsonString(
                                 value.toString()
                             )
                         )
@@ -40,39 +39,39 @@ interface Object : ObjectOrLink, JsonLd {
         }
     var name: List<LangString>
         get() {
-            val jsonNode = jsonObject.obtain("https://www.w3.org/ns/activitystreams#name") ?: return emptyList()
+            val jsonNode = jsonObject.obtain(Properties.NAME) ?: return emptyList()
 
             return jsonNode.asArray().map {
                 require(it.isObject)
                 it as JsonObject
                 LangString(
-                    it["@language"]?.asStringLiteralOrNull()?.value,
-                    it["@value"]!!.asStringLiteralOrNull()?.value.toString()
+                    it[Properties.LANGUAGE]?.asStringLiteralOrNull()?.value,
+                    it[Properties.VALUE]!!.asStringLiteralOrNull()?.value.toString()
                 )
             }
         }
         set(value) {
             jsonObject.setOrRemove(
-                "https://www.w3.org/ns/activitystreams#name",
+                Properties.NAME,
                 value.map { it.toJsonObject() }.toJsonArray()
             )
         }
     var content: List<LangString>
         get() {
-            val jsonNode = jsonObject.obtain("https://www.w3.org/ns/activitystreams#content") ?: return emptyList()
+            val jsonNode = jsonObject.obtain(Properties.CONTENT) ?: return emptyList()
 
             return jsonNode.asArray().map {
                 require(it.isObject)
                 it as JsonObject
                 LangString(
-                    it["@language"]?.asStringLiteralOrNull()?.value,
-                    it["@value"]!!.asStringLiteralOrNull()?.value.toString()
+                    it[Properties.LANGUAGE]?.asStringLiteralOrNull()?.value,
+                    it[Properties.VALUE]!!.asStringLiteralOrNull()?.value.toString()
                 )
             }
         }
         set(value) {
             jsonObject.setOrRemove(
-                "https://www.w3.org/ns/activitystreams#content",
+                Properties.CONTENT,
                 value.map { it.toJsonObject() }.toJsonArray()
             )
         }

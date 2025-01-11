@@ -8,14 +8,18 @@ data class LangString(val language: String? = null, val value: String) {
         return JsonObject(
             if (language != null) {
                 mutableMapOf(
-                    "@language" to JsonString(language),
-                    "@value" to JsonString(value)
+                    Properties.LANGUAGE to JsonString(language),
+                    Properties.VALUE to JsonString(value)
                 )
             } else {
                 mutableMapOf(
-                    "@value" to JsonString(value)
+                    Properties.VALUE to JsonString(value)
                 )
             }
         )
     }
+}
+
+fun List<LangString>.getAsMap(): Map<String, String> {
+    return associate { (it.language ?: "default") to it.value }
 }
