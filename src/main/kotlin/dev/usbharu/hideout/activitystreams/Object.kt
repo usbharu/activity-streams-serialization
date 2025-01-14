@@ -32,14 +32,14 @@ interface Object : ObjectOrLink, JsonLd {
     var icon: List<ImageOrLink>
         get() {
             val jsonNode = jsonObject.obtain(Properties.ICON) ?: return emptyList()
-            return jsonNode.asArray().map { ObjectFactory.factory(it) as ImageOrLink }
+            return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
         }
         set(value) = setAsObjectOrLink(Properties.ICON, value)
 
     var image: List<ImageOrLink>
         get() {
             val jsonNode = jsonObject.obtain(Properties.IMAGE) ?: return emptyList()
-            return jsonNode.asArray().map { ObjectFactory.factory(it) as ImageOrLink }
+            return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
         }
         set(value) = setAsObjectOrLink(Properties.IMAGE, value)
 
@@ -55,7 +55,7 @@ interface Object : ObjectOrLink, JsonLd {
         get() {
             val jsonNode = jsonObject.obtain(Properties.REPLIES)?.asArray()?.firstOrNull() ?: return null
             require(jsonNode.isObject)
-            return ObjectFactory.factory(jsonNode) as Collection
+            return DefaultObjectFactory.create(jsonNode) as Collection
         }
         set(value) {
             jsonObject.setOrRemove(Properties.REPLIES, value?.json)
@@ -100,7 +100,7 @@ interface Object : ObjectOrLink, JsonLd {
                 require(it.isObject)
                 it as JsonObject
                 if (it[Properties.TYPE] == JsonString(Type.LINK)) {
-                    ObjectFactory.factory(it) as Link
+                    DefaultObjectFactory.create(it) as Link
                 } else {
                     Uri(it)
                 }
@@ -109,7 +109,7 @@ interface Object : ObjectOrLink, JsonLd {
         set(value) {
             jsonObject.setOrRemove(
                 Properties.URL,
-                value.map { ObjectFactory.toJsonNode(it) }.toJsonArray()
+                value.map { DefaultObjectFactory.toJsonNode(it) }.toJsonArray()
             )
         }
 

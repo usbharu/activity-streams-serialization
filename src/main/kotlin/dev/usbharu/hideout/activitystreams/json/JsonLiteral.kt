@@ -26,6 +26,15 @@ data class JsonString(val value: String) : JsonLiteral() {
     override fun toString(): String {
         return "\"$value\""
     }
+
+    companion object {
+        fun create(string: String?): JsonString? {
+            if (string == null) {
+                return null
+            }
+            return JsonString(string)
+        }
+    }
 }
 
 data class JsonNumber(val value: Double) : JsonLiteral() {

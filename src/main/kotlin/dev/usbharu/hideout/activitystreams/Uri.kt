@@ -7,4 +7,8 @@ data class Uri(override var json: JsonNode) : UriOrLink {
     fun asUri(): URI? {
         return URI.create(jsonObject[Properties.ID]?.asStringLiteralOrNull()?.value ?: return null)
     }
+
+    override var objectFactory: ObjectFactory
+        get() = TODO("Not yet implemented")
+        set(value) {}
 }

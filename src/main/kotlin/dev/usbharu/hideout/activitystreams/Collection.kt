@@ -16,21 +16,21 @@ interface Collection : Object {
     var current: CollectionPageOrLink?
         get() {
             val jsonArray = jsonObject.obtain(Properties.CURRENT)?.asArray() ?: return null
-            return jsonArray.firstOrNull()?.let { ObjectFactory.factory(it) as CollectionPageOrLink }
+            return jsonArray.firstOrNull()?.let { DefaultObjectFactory.create(it) as CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.CURRENT, value?.json)
 
     var first: CollectionPageOrLink?
         get() {
             val jsonArray = jsonObject.obtain(Properties.FIRST)?.asArray() ?: return null
-            return jsonArray.firstOrNull()?.let { ObjectFactory.factory(it) as CollectionPageOrLink }
+            return jsonArray.firstOrNull()?.let { DefaultObjectFactory.create(it) as CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.FIRST, value?.json)
 
     var last: CollectionPageOrLink?
         get() {
             val jsonArray = jsonObject.obtain(Properties.LAST)?.asArray() ?: return null
-            return jsonArray.firstOrNull()?.let { ObjectFactory.factory(it) as CollectionPageOrLink }
+            return jsonArray.firstOrNull()?.let { DefaultObjectFactory.create(it) as CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.LAST, value?.json)
 

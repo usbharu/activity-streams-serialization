@@ -8,6 +8,7 @@ import dev.usbharu.hideout.activitystreams.json.toJsonArray
 import java.net.URI
 
 interface JsonLd {
+    var objectFactory:ObjectFactory
     var json: JsonNode
     val jsonObject: JsonObject
         get() {
@@ -20,7 +21,7 @@ interface JsonLd {
                 ?: return emptyList()
         }
         set(value) {
-            return jsonObject.setOrRemove(Properties.TYPE, value.map { JsonString(it) }.toJsonArray())
+            return jsonObject.setOrRemove(Properties.TYPE, value.mapNotNull(JsonString::create).toJsonArray())
         }
     var id: URI?
         get() {
@@ -28,24 +29,20 @@ interface JsonLd {
             return URI.create(string.value)
         }
         set(value) {
-            jsonObject.setOrRemove(ID, value?.toString()?.let { JsonString(it) })
+            jsonObject.setOrRemove(ID, JsonString.create(value?.toString()))
         }
 
-    fun getAsObjectOrLink(id: String): List<ObjectOrLink> {
+    fun getAsObjectOrLink(id: String, objectFactory: ObjectFactory = this.objectFactory): List<ObjectOrLink> {
         val jsonNode = jsonObject.obtain(id) ?: return emptyList()
-        return jsonNode.asArray().map { ObjectFactory.factory(it) as ObjectOrLink }
+        return jsonNode.asArray().map { objectFactory.create(it) as ObjectOrLink }
     }
 
     fun setAsObjectOrLink(id: String, `object`: List<ObjectOrLink>) {
         jsonObject.setOrRemove(
             id,
-            `object`.map { ObjectFactory.toJsonNode(it) }.toJsonArray()
+            `object`.map { DefaultObjectFactory.toJsonNode(it) }.toJsonArray()
         )
     }
-}
-
-fun <T : JsonLd> JsonLd.asTypeOrNull(clazz: Class<T>): T? {
-    return this as? T
 }
 
 inline fun <reified T : JsonLd> JsonLd.asTypeOfNull(type: String): T? {

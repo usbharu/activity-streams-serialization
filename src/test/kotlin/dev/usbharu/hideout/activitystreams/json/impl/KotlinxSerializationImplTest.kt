@@ -68,7 +68,7 @@ class KotlinxSerializationImplTest {
         val convert = KotlinxSerializationImpl.convert(jsonElement)
         println(convert)
 
-        val factory = ObjectFactory.factory(convert.asArray()[0])
+        val factory = DefaultObjectFactory.create(convert.asArray()[0])
         val note = factory.asTypeOfNull<Note>(Type.NOTE) ?: return
         println(note.content.getAsMap()["default"])
         println(note.summary)
