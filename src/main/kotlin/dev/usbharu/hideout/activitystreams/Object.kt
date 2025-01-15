@@ -76,7 +76,7 @@ interface Object : ObjectOrLink, JsonLd {
         }
 
     var tag: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.TAG)
+        get() = tag()
         set(value) = setAsObjectOrLink(Properties.TAG, value)
 
     var updated: OffsetDateTime?
@@ -104,19 +104,19 @@ interface Object : ObjectOrLink, JsonLd {
         }
 
     var to: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.TO)
+        get() = to()
         set(value) = setAsObjectOrLink(Properties.TO, value)
 
     var bto: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.BTO)
+        get() = bto()
         set(value) = setAsObjectOrLink(Properties.BTO, value)
 
     var cc: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.CC)
+        get() = cc()
         set(value) = setAsObjectOrLink(Properties.CC, value)
 
     var bcc: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.BCC)
+        get() = bcc()
         set(value) = setAsObjectOrLink(Properties.BCC, value)
 
     var published: OffsetDateTime?
@@ -255,4 +255,53 @@ fun Object?.inReplyTo(objectFactory: ObjectFactory? = this?.objectFactory): List
     }
     requireNotNull(objectFactory)
     return getAsObjectOrLink(Properties.IN_REPLY_TO, objectFactory)
+}
+
+fun Object?.location(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.LOCATION, objectFactory)
+}
+
+fun Object?.tag(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.TAG, objectFactory)
+}
+
+fun Object?.to(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.TO, objectFactory)
+}
+
+fun Object?.bto(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.BTO, objectFactory)
+}
+
+
+fun Object?.cc(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.CC, objectFactory)
+}
+
+fun Object?.bcc(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.BCC, objectFactory)
 }
