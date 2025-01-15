@@ -40,7 +40,7 @@ interface JsonLd {
     fun setAsObjectOrLink(id: String, `object`: List<ObjectOrLink>) {
         jsonObject.setOrRemove(
             id,
-            `object`.map { DefaultObjectFactory.toJsonNode(it) }.toJsonArray()
+            `object`.map { it.json }.toJsonArray()
         )
     }
 }

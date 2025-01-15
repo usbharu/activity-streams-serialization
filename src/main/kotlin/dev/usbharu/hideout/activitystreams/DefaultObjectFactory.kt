@@ -8,7 +8,4 @@ object DefaultObjectFactory : ObjectFactory {
         return DefaultActivityStream(jsonNode, this)
     }
 
-    fun toJsonNode(jsonLd: JsonLd): JsonNode {
-        return jsonLd.json
-    }
 }

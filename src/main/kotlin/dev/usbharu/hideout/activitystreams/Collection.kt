@@ -35,6 +35,20 @@ interface Collection : Object {
         set(value) = jsonObject.setOrRemove(Properties.LAST, value?.json)
 
     var items: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.ITEMS)
+        get() = items()
         set(value) = setAsObjectOrLink(Properties.ITEMS, value)
+}
+
+var Collection?.items: List<ObjectOrLink>
+    get() = this.items()
+    set(value) {
+        this?.items = value
+    }
+
+fun Collection?.items(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.ITEMS, objectFactory)
 }

@@ -71,18 +71,16 @@ class KotlinxSerializationImplTest {
         val factory = DefaultObjectFactory.create(convert.asArray()[0])
         val note = factory.asTypeOfNull<Note>(Type.NOTE) ?: return
         println(note.content.getAsMap()["default"])
+        println(note.attachment())
         println(note.summary)
         println(note.id)
         println(note.replies)
         println(note.replies?.totalItems)
-        println(note.replies?.items)
+        println(note.replies.items)
         note
             .replies
-            ?.items
-            .orEmpty()
-            .mapNotNull {
-                it.asTypeOfNull<Note>(Type.NOTE)
-            }
+            .items
+            .filterBy<Note>(Type.NOTE)
             .map {
                 println(it.summary)
                 println(it.type)

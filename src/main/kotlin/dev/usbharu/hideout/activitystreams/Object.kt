@@ -10,11 +10,11 @@ import javax.xml.datatype.Duration
 interface Object : ObjectOrLink, JsonLd {
 
     var attachment: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.ATTACHMENT)
+        get() = attachment()
         set(value) = setAsObjectOrLink(Properties.ATTACHMENT, value)
 
     var audience: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.AUDIENCE)
+        get() = audience()
         set(value) = setAsObjectOrLink(Properties.AUDIENCE, value)
 
     var context: List<ObjectOrLink>
@@ -26,25 +26,19 @@ interface Object : ObjectOrLink, JsonLd {
         set(value) = setOffsetDateTime(value, Properties.END_TIME)
 
     var generator: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.GENERATOR)
+        get() = generator()
         set(value) = setAsObjectOrLink(Properties.GENERATOR, value)
 
     var icon: List<ImageOrLink>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.ICON) ?: return emptyList()
-            return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
-        }
+        get() = icon()
         set(value) = setAsObjectOrLink(Properties.ICON, value)
 
     var image: List<ImageOrLink>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.IMAGE) ?: return emptyList()
-            return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
-        }
+        get() = image()
         set(value) = setAsObjectOrLink(Properties.IMAGE, value)
 
     var inReplyTo: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.IN_REPLY_TO)
+        get() = inReplyTo()
         set(value) = setAsObjectOrLink(Properties.IN_REPLY_TO, value)
 
     var location: List<ObjectOrLink>
@@ -52,11 +46,7 @@ interface Object : ObjectOrLink, JsonLd {
         set(value) = setAsObjectOrLink(Properties.LOCATION, value)
 
     var replies: Collection?
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.REPLIES)?.asArray()?.firstOrNull() ?: return null
-            require(jsonNode.isObject)
-            return DefaultObjectFactory.create(jsonNode) as Collection
-        }
+        get() = replies()
         set(value) {
             jsonObject.setOrRemove(Properties.REPLIES, value?.json)
         }
@@ -109,7 +99,7 @@ interface Object : ObjectOrLink, JsonLd {
         set(value) {
             jsonObject.setOrRemove(
                 Properties.URL,
-                value.map { DefaultObjectFactory.toJsonNode(it) }.toJsonArray()
+                value.map { it.json }.toJsonArray()
             )
         }
 
@@ -197,4 +187,72 @@ interface Object : ObjectOrLink, JsonLd {
                 value.map { it.toJsonObject() }.toJsonArray()
             )
         }
+}
+
+fun Object?.attachment(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.ATTACHMENT, objectFactory)
+}
+
+fun Object?.replies(objectFactory: ObjectFactory? = this?.objectFactory): Collection? {
+    if (this == null) {
+        return null
+    }
+    requireNotNull(objectFactory)
+    val jsonNode = jsonObject.obtain(Properties.REPLIES)?.asArray()?.firstOrNull() ?: return null
+    require(jsonNode.isObject)
+    return objectFactory.create(jsonNode) as Collection
+}
+
+fun Object?.audience(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.AUDIENCE, objectFactory)
+}
+
+fun Object?.context(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.CONTEXT, objectFactory)
+}
+
+fun Object?.generator(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.GENERATOR, objectFactory)
+}
+
+fun Object?.icon(objectFactory: ObjectFactory? = this?.objectFactory): List<ImageOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    val jsonNode = jsonObject.obtain(Properties.ICON) ?: return emptyList()
+    return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
+}
+
+fun Object?.image(objectFactory: ObjectFactory? = this?.objectFactory): List<ImageOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    val jsonNode = jsonObject.obtain(Properties.IMAGE) ?: return emptyList()
+    return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
+}
+
+fun Object?.inReplyTo(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.IN_REPLY_TO, objectFactory)
 }

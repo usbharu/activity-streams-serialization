@@ -48,3 +48,7 @@ fun List<ObjectOrLink>.objects(): List<Object> {
 fun List<ObjectOrLink>.links(): List<ObjectOrLink> { //todo linkに変える
     return this.filter { it.isLink() }
 }
+
+inline fun <reified T : JsonLd> List<ObjectOrLink>.filterBy(type: String): List<T> {
+    return this.mapNotNull { it.asTypeOfNull(type) }
+}

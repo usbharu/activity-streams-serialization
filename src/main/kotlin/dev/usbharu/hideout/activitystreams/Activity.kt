@@ -2,7 +2,7 @@ package dev.usbharu.hideout.activitystreams
 
 sealed interface InternalActivity : Object {
     var actor: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.ACTOR)
+        get() = actor()
         set(value) = setAsObjectOrLink(Properties.ACTOR, value)
 
     var target: List<ObjectOrLink>
@@ -20,6 +20,15 @@ sealed interface InternalActivity : Object {
     var instrument: List<ObjectOrLink>
         get() = getAsObjectOrLink(Properties.INSTRUMENT)
         set(value) = setAsObjectOrLink(Properties.INSTRUMENT, value)
+}
+
+@JvmOverloads
+fun InternalActivity?.actor(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {
+    if (this == null) {
+        return emptyList()
+    }
+    requireNotNull(objectFactory)
+    return getAsObjectOrLink(Properties.ACTOR, objectFactory)
 }
 
 interface Activity : InternalActivity {
