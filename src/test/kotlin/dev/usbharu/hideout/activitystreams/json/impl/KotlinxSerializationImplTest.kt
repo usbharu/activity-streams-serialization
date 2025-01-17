@@ -3,6 +3,7 @@ package dev.usbharu.hideout.activitystreams.json.impl
 import dev.usbharu.hideout.activitystreams.*
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
+import java.net.URI
 
 class KotlinxSerializationImplTest {
     @Test
@@ -90,5 +91,16 @@ class KotlinxSerializationImplTest {
                 }
             }
 
+    }
+
+    @Test
+    fun create() {
+        val create = DefaultObjectFactory.create<Note>(Type.NOTE)
+
+        create.id = URI.create("https://examples.com")
+
+        val convert = KotlinxSerializationImpl.convert(create.json)
+
+        println(Json.encodeToString(convert))
     }
 }

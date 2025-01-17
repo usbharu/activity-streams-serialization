@@ -29,4 +29,17 @@ object KotlinxSerializationImpl {
             JsonNull -> dev.usbharu.hideout.activitystreams.json.JsonNull
         }
     }
+
+    fun convert(jsonNode: JsonNode): JsonElement {
+        return when (jsonNode) {
+            is JsonString -> JsonPrimitive(jsonNode.value)
+            is JsonNumber -> JsonPrimitive(jsonNode.value)
+            is JsonBoolean -> JsonPrimitive(jsonNode.value)
+            is dev.usbharu.hideout.activitystreams.json.JsonObject -> JsonObject(jsonNode.map { it.key to convert(it.value) }
+                .toMap())
+
+            is dev.usbharu.hideout.activitystreams.json.JsonArray -> JsonArray(jsonNode.map { convert(it) })
+            else -> JsonNull
+        }
+    }
 }
