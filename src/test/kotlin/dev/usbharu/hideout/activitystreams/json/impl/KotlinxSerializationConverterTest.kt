@@ -1,11 +1,16 @@
 package dev.usbharu.hideout.activitystreams.json.impl
 
 import dev.usbharu.hideout.activitystreams.*
+import dev.usbharu.hideout.activitystreams.core.attachment
+import dev.usbharu.hideout.activitystreams.core.filterBy
+import dev.usbharu.hideout.activitystreams.core.items
+import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
+import dev.usbharu.hideout.activitystreams.other.getAsMap
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import java.net.URI
 
-class KotlinxSerializationImplTest {
+class KotlinxSerializationConverterTest {
     @Test
     fun name() {
 
@@ -66,7 +71,7 @@ class KotlinxSerializationImplTest {
 ]
         """.trimIndent()
         )
-        val convert = KotlinxSerializationImpl.convert(jsonElement)
+        val convert = KotlinxSerializationConverter.convert(jsonElement)
         println(convert)
 
         val factory = DefaultObjectFactory.create(convert.asArray()[0])
@@ -99,7 +104,7 @@ class KotlinxSerializationImplTest {
 
         create.id = URI.create("https://examples.com")
 
-        val convert = KotlinxSerializationImpl.convert(create.json)
+        val convert = KotlinxSerializationConverter.convert(create.json)
 
         println(Json.encodeToString(convert))
     }

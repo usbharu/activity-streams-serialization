@@ -1,5 +1,6 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.other
 
+import dev.usbharu.hideout.activitystreams.Properties
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString
 

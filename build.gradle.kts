@@ -11,7 +11,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
 }
 
 tasks.test {

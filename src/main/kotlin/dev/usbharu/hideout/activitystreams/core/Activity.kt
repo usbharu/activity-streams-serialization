@@ -1,4 +1,7 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.core
+
+import dev.usbharu.hideout.activitystreams.ObjectFactory
+import dev.usbharu.hideout.activitystreams.Properties
 
 sealed interface InternalActivity : Object {
     var actor: List<ObjectOrLink>

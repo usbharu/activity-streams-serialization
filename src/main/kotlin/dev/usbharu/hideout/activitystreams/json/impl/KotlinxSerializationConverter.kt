@@ -7,7 +7,7 @@ import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 
 
-object KotlinxSerializationImpl {
+object KotlinxSerializationConverter {
     fun convert(jsonElement: JsonElement): JsonNode {
         return when (jsonElement) {
             is JsonArray -> jsonElement.map { convert(it) }.toJsonArray()

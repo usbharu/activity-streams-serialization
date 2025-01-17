@@ -1,8 +1,15 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.core
 
+import dev.usbharu.hideout.activitystreams.JsonLd
+import dev.usbharu.hideout.activitystreams.ObjectFactory
+import dev.usbharu.hideout.activitystreams.Properties
+import dev.usbharu.hideout.activitystreams.Type
+import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString
 import dev.usbharu.hideout.activitystreams.json.toJsonArray
+import dev.usbharu.hideout.activitystreams.other.LangString
+import dev.usbharu.hideout.activitystreams.other.Uri
 import java.time.OffsetDateTime
 import javax.xml.datatype.DatatypeFactory
 import javax.xml.datatype.Duration

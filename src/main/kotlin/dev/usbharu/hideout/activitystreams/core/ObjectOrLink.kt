@@ -1,10 +1,14 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.core
 
+import dev.usbharu.hideout.activitystreams.JsonLd
+import dev.usbharu.hideout.activitystreams.Properties
+import dev.usbharu.hideout.activitystreams.asTypeOfNull
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString
 import dev.usbharu.hideout.activitystreams.json.toJsonArray
+import dev.usbharu.hideout.activitystreams.other.LangString
 
-interface ObjectOrLink : JsonLd {
+interface ObjectOrLink : JsonLd, ObjectOrLinkOrDateTimeOrBoolean {
     fun isObject(): Boolean
     fun isLink(): Boolean
 

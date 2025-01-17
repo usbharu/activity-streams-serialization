@@ -1,6 +1,7 @@
 package dev.usbharu.hideout.activitystreams
 
 import dev.usbharu.hideout.activitystreams.Properties.ID
+import dev.usbharu.hideout.activitystreams.core.ObjectOrLink
 import dev.usbharu.hideout.activitystreams.json.JsonNode
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 import dev.usbharu.hideout.activitystreams.json.JsonString

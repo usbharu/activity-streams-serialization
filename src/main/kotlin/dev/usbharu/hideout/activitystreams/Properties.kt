@@ -70,4 +70,8 @@ object Properties {
 object Type {
     const val LINK = "https://www.w3.org/ns/activitystreams#Link"
     const val NOTE = "https://www.w3.org/ns/activitystreams#Note"
+    const val ACCEPT = "https://www.w3.org/ns/activitystreams#Accept"
+    const val TENTATIVE_ACCEPT = "https://www.w3.org/ns/activitystreams#TentativeAccept"
+    const val ADD = "https://www.w3.org/ns/activitystreams#Add"
+    const val ARRIVE = "https://www.w3.org/ns/activitystreams#Arrive"
 }

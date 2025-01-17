@@ -1,6 +1,7 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.impl
 
-import dev.usbharu.hideout.activitystreams.impl.DefaultActivityStream
+import dev.usbharu.hideout.activitystreams.JsonLd
+import dev.usbharu.hideout.activitystreams.ObjectFactory
 import dev.usbharu.hideout.activitystreams.json.JsonNode
 
 object DefaultObjectFactory : ObjectFactory {

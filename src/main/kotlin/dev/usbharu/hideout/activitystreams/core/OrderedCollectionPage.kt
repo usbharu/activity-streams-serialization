@@ -1,5 +1,6 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.core
 
+import dev.usbharu.hideout.activitystreams.Properties
 import dev.usbharu.hideout.activitystreams.json.JsonNumber
 
 interface OrderedCollectionPage : CollectionPage, OrderedCollection {

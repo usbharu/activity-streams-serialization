@@ -1,5 +1,8 @@
-package dev.usbharu.hideout.activitystreams
+package dev.usbharu.hideout.activitystreams.core
 
+import dev.usbharu.hideout.activitystreams.ObjectFactory
+import dev.usbharu.hideout.activitystreams.Properties
+import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
 import dev.usbharu.hideout.activitystreams.json.JsonNumber
 import dev.usbharu.hideout.activitystreams.json.JsonObject
 
