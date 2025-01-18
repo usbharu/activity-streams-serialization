@@ -74,4 +74,6 @@ object Type {
     const val TENTATIVE_ACCEPT = "https://www.w3.org/ns/activitystreams#TentativeAccept"
     const val ADD = "https://www.w3.org/ns/activitystreams#Add"
     const val ARRIVE = "https://www.w3.org/ns/activitystreams#Arrive"
+    const val OBJECT = "https://www.w3.org/ns/activitystreams#Object"
+    const val IMAGE = "https://www.w3.org/ns/activitystreams#Image"
 }

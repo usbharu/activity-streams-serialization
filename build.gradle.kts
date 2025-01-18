@@ -15,6 +15,7 @@ dependencies {
     compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
     testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
+    testImplementation("com.github.jsonld-java:jsonld-java:0.13.6")
 }
 
 tasks.test {
