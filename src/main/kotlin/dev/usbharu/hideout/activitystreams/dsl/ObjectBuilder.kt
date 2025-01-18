@@ -1,15 +1,21 @@
 package dev.usbharu.hideout.activitystreams.dsl
 
 import dev.usbharu.hideout.activitystreams.ObjectFactory
+import dev.usbharu.hideout.activitystreams.Properties
 import dev.usbharu.hideout.activitystreams.Type
+import dev.usbharu.hideout.activitystreams.core.Link
 import dev.usbharu.hideout.activitystreams.core.Object
 import dev.usbharu.hideout.activitystreams.core.ObjectOrLink
 import dev.usbharu.hideout.activitystreams.core.UriOrLink
 import dev.usbharu.hideout.activitystreams.create
 import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
+import dev.usbharu.hideout.activitystreams.json.JsonObject
+import dev.usbharu.hideout.activitystreams.json.JsonString
 import dev.usbharu.hideout.activitystreams.other.LangString
 import dev.usbharu.hideout.activitystreams.other.Uri
 import java.net.URI
+import java.time.OffsetDateTime
+
 
 open class ObjectBuilder(
     var objectFactory: ObjectFactory = DefaultObjectFactory, private val ldBuilder: JsonLdBuilder
@@ -74,6 +80,40 @@ open class ObjectBuilder(
 
     fun name(defaultLangString: String): ObjectBuilder {
         Object.name += LangString(value = defaultLangString)
+        return this
+    }
+
+    fun attributedTo(string: String?): ObjectBuilder {
+        Object.attributedTo += objectFactory.create(
+            JsonObject(
+                mutableMapOf(
+                    Properties.ID to JsonString(
+                        string ?: return this
+                    )
+                )
+            )
+        ) as Link
+        return this
+    }
+
+    fun attributedTo(objectOrLink: ObjectOrLink?): ObjectBuilder {
+        Object.attributedTo += objectOrLink ?: return this
+        return this
+    }
+
+    fun attributedTo(objectOrLinkList: List<ObjectOrLink?>?): ObjectBuilder {
+        Object.attributedTo = objectOrLinkList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun attributedTo(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        attributedTo(objectOrLinkBuilder1)
+        return this
+    }
+
+    fun endTime(endTime: OffsetDateTime?): ObjectBuilder {
+        Object.endTime = endTime
         return this
     }
 }

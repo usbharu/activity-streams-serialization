@@ -12,6 +12,7 @@ import dev.usbharu.hideout.activitystreams.other.defaultOrNull
 import org.junit.jupiter.api.Test
 import preprocess
 import java.net.URI
+import java.time.OffsetDateTime
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -115,6 +116,83 @@ class ObjectTest {
         )
 
         assertContentEquals(listOf(JsonLdBuilder().Object()), deserialize.attributedTo)
+    }
 
+    @Test
+    fun serializeAttributedTo1() {
+        val value = JsonLdBuilder().Object {
+            attributedTo {
+                listOf(
+                    Object { })
+            }
+        }
+
+        assertObjects(
+            value, """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "attributedTo": [
+    {
+      "type": "Object"
+    }
+  ]
+}"""
+        )
+    }
+
+    @Test
+    fun deserializeAttributedTo2() {
+        val deserialize = checkDeserialize<Object>(
+            """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "attributedTo": "https://example.com"
+}""", Type.OBJECT
+        )
+
+        assertContentEquals(listOf(JsonLdBuilder().Link("https://example.com")), deserialize.attributedTo)
+    }
+
+    @Test
+    fun serializeAttributedTo2() {
+        val value = JsonLdBuilder().Object {
+            attributedTo("https://example.com")
+        }
+
+        assertObjects(
+            value, """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "attributedTo": "https://example.com"
+}"""
+        )
+    }
+
+    @Test
+    fun deserializeEndTime() {
+        val checkDeserialize = checkDeserialize<Object>(
+            """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "endTime": "2015-01-01T06:00:00-08:00"
+}""", Type.OBJECT
+        )
+
+        assertEquals(OffsetDateTime.parse("2015-01-01T06:00:00-08:00"), checkDeserialize.endTime)
+    }
+
+    @Test
+    fun serializeEndTime() {
+        val value = JsonLdBuilder().Object {
+            endTime(OffsetDateTime.parse("2015-01-01T06:00:00-08:00"))
+        }
+
+        assertObjects(
+            value, """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "endTime": "2015-01-01T06:00:00-08:00"
+}"""
+        )
     }
 }

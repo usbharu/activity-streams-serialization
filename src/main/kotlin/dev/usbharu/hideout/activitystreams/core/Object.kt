@@ -11,6 +11,7 @@ import dev.usbharu.hideout.activitystreams.json.toJsonArray
 import dev.usbharu.hideout.activitystreams.other.LangString
 import dev.usbharu.hideout.activitystreams.other.Uri
 import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import javax.xml.datatype.DatatypeFactory
 import javax.xml.datatype.Duration
 
@@ -146,6 +147,7 @@ interface Object : ObjectOrLink, JsonLd {
     fun setOffsetDateTime(value: OffsetDateTime?, key: String) {
         if (value == null) {
             jsonObject.remove(key)
+            return
         }
         jsonObject.setOrRemove(
             key, listOf(
@@ -153,7 +155,7 @@ interface Object : ObjectOrLink, JsonLd {
                     mutableMapOf(
                         Properties.TYPE to JsonString("http://www.w3.org/2001/XMLSchema#dateTime"),
                         Properties.VALUE to JsonString(
-                            value.toString()
+                            value.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                         )
                     )
                 )
