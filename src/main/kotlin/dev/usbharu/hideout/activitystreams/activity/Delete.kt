@@ -1,4 +1,6 @@
 package dev.usbharu.hideout.activitystreams.activity
 
-interface Delete {
+import dev.usbharu.hideout.activitystreams.core.Activity
+
+interface Delete : Activity {
 }
