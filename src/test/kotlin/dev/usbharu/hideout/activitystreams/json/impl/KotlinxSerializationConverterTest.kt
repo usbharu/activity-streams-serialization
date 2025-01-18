@@ -5,6 +5,7 @@ import dev.usbharu.hideout.activitystreams.core.attachment
 import dev.usbharu.hideout.activitystreams.core.filterBy
 import dev.usbharu.hideout.activitystreams.core.items
 import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
+import dev.usbharu.hideout.activitystreams.`object`.Note
 import dev.usbharu.hideout.activitystreams.other.getAsMap
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test

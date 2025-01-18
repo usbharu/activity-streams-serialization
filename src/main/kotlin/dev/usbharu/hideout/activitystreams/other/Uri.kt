@@ -6,7 +6,7 @@ import dev.usbharu.hideout.activitystreams.core.UriOrLink
 import dev.usbharu.hideout.activitystreams.json.JsonNode
 import java.net.URI
 
-data class Uri(override var json: JsonNode) : UriOrLink {
+data class Uri(override var json: JsonNode) : UriOrLink, UriOrUnits {
     fun asUri(): URI? {
         return URI.create(jsonObject[Properties.ID]?.asStringLiteralOrNull()?.value ?: return null)
     }

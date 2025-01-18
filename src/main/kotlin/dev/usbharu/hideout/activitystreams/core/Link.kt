@@ -8,7 +8,8 @@ import dev.usbharu.hideout.activitystreams.json.JsonString
 import dev.usbharu.hideout.activitystreams.json.toJsonArray
 import dev.usbharu.hideout.activitystreams.other.Uri
 
-interface Link : ObjectOrLink, UriOrLink, ImageOrLink, CollectionPageOrLink, CollectionOrLink, JsonLd {
+interface Link : ObjectOrLinkOrDateTimeOrBoolean, ObjectOrLink, UriOrLink, ImageOrLink, CollectionPageOrLink,
+    CollectionOrLink, JsonLd {
     var href: Uri?
         get() = jsonObject.obtain(Properties.HREF)?.let { Uri(it) }
         set(value) = jsonObject.setOrRemove(Properties.HREF, value?.json)

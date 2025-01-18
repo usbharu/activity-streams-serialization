@@ -3,7 +3,7 @@ package dev.usbharu.hideout.activitystreams.core
 import dev.usbharu.hideout.activitystreams.ObjectFactory
 import dev.usbharu.hideout.activitystreams.Properties
 
-sealed interface InternalActivity : Object {
+sealed interface InternalActivity : Object, ActivityOrRelationship {
     var actor: List<ObjectOrLink>
         get() = actor()
         set(value) = setAsObjectOrLink(Properties.ACTOR, value)
@@ -35,9 +35,7 @@ fun InternalActivity?.actor(objectFactory: ObjectFactory? = this?.objectFactory)
 }
 
 interface Activity : InternalActivity {
-    var `object`: List<ObjectOrLink>
-        get() = getAsObjectOrLink(Properties.OBJECT)
-        set(value) = setAsObjectOrLink(Properties.OBJECT, value)
+
 }
 
 interface IntransitiveActivity : InternalActivity

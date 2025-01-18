@@ -1,6 +1,7 @@
 package dev.usbharu.hideout.activitystreams
 
 import dev.usbharu.hideout.activitystreams.Properties.ID
+import dev.usbharu.hideout.activitystreams.core.Object
 import dev.usbharu.hideout.activitystreams.core.ObjectOrLink
 import dev.usbharu.hideout.activitystreams.json.JsonNode
 import dev.usbharu.hideout.activitystreams.json.JsonObject
@@ -39,6 +40,18 @@ interface JsonLd {
     }
 
     fun setAsObjectOrLink(id: String, `object`: List<ObjectOrLink>) {
+        jsonObject.setOrRemove(
+            id,
+            `object`.map { it.json }.toJsonArray()
+        )
+    }
+
+    fun getAsObject(id: String, objectFactory: ObjectFactory = this.objectFactory): List<Object> {
+        val jsonNode = jsonObject.obtain(id) ?: return emptyList()
+        return jsonNode.asArray().map { objectFactory.create(it) as Object }
+    }
+
+    fun setAsObject(id: String, `object`: List<Object>) {
         jsonObject.setOrRemove(
             id,
             `object`.map { it.json }.toJsonArray()

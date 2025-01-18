@@ -1,13 +1,14 @@
 package dev.usbharu.hideout.activitystreams.impl
 
-import dev.usbharu.hideout.activitystreams.Image
 import dev.usbharu.hideout.activitystreams.JsonLd
-import dev.usbharu.hideout.activitystreams.Note
-import dev.usbharu.hideout.activitystreams.core.*
-import dev.usbharu.hideout.activitystreams.core.Collection
+import dev.usbharu.hideout.activitystreams.core.Object
+import dev.usbharu.hideout.activitystreams.link.Mention
+import dev.usbharu.hideout.activitystreams.`object`.Image
+import dev.usbharu.hideout.activitystreams.`object`.Note
 
-abstract class AbstractActivityStream : Activity, JsonLd, Object, ObjectOrLink, CollectionPage, Collection,
-    OrderedCollection, OrderedCollectionPage, Image, ImageOrLink, UriOrLink, Link, Note {
+abstract class AbstractActivityStream : AbstractActor, AbstractActivity, AbstractCore, AbstractObject, JsonLd, Object,
+    Image, Note,
+    Mention {
     override fun isObject(): Boolean {
         return true //todo
     }
