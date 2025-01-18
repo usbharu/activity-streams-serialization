@@ -1,14 +1,13 @@
 package dev.usbharu.hideout.activitystreams.core
 
 import assertObjects
+import checkDeserialize
 import dev.usbharu.hideout.activitystreams.Type
 import dev.usbharu.hideout.activitystreams.asTypeOfNull
 import dev.usbharu.hideout.activitystreams.create
+import dev.usbharu.hideout.activitystreams.dsl.JsonLdBuilder
 import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
-import dev.usbharu.hideout.activitystreams.`object`.Image
-import dev.usbharu.hideout.activitystreams.`object`.Note
 import dev.usbharu.hideout.activitystreams.other.LangString
-import dev.usbharu.hideout.activitystreams.other.Uri
 import dev.usbharu.hideout.activitystreams.other.defaultOrNull
 import org.junit.jupiter.api.Test
 import preprocess
@@ -57,8 +56,36 @@ class ObjectTest {
 
     @Test
     fun deserializeAttachment() {
-        val preprocess = preprocess(
+        val checkDeserialize = checkDeserialize<Object>(
             """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "attachment": [
+    {
+      "type": "Object"
+    }
+  ]
+}""", Type.OBJECT
+        )
+
+        assertContentEquals(listOf(JsonLdBuilder().Object()), checkDeserialize.attachment)
+    }
+
+    @Test
+    fun serializeAttachment() {
+        val object1 = JsonLdBuilder().Note {
+            attachment {
+                listOf(
+                    Image {
+                        content("This is what he looks like.")
+                        url("http://example.org/cat.jpeg")
+                    })
+            }
+            name("Have you seen my cat?")
+        }
+
+        assertObjects(
+            object1, """{
   "@context": "https://www.w3.org/ns/activitystreams",
   "type": "Note",
   "name": "Have you seen my cat?",
@@ -70,23 +97,24 @@ class ObjectTest {
     }
   ]
 }"""
-        )[0]
-
-        val jsonLd = DefaultObjectFactory.create(preprocess)
-
-        val note = jsonLd.asTypeOfNull<Note>(Type.NOTE)
-        assertNotNull(note)
-        val expected = listOf(DefaultObjectFactory.create<Image>(Type.IMAGE).apply {
-            content += LangString(value = "This is what he looks like.");url += Uri.fromURI(
-            URI.create(
-                "http://example.org/cat.jpeg"
-            )
         )
-        } as ObjectOrLink)
-        val actual = note.attachment
+    }
 
-        println(expected)
-        println(actual)
-        assertContentEquals(expected, actual)
+    @Test
+    fun deserializeAttributedTo1() {
+        val deserialize = checkDeserialize<Object>(
+            """{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object",
+  "attributedTo": [
+    {
+      "type": "Object"
+    }
+  ]
+}""", Type.OBJECT
+        )
+
+        assertContentEquals(listOf(JsonLdBuilder().Object()), deserialize.attributedTo)
+
     }
 }

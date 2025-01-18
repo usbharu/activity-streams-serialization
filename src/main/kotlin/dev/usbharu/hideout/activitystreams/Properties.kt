@@ -76,4 +76,5 @@ object Type {
     const val ARRIVE = "https://www.w3.org/ns/activitystreams#Arrive"
     const val OBJECT = "https://www.w3.org/ns/activitystreams#Object"
     const val IMAGE = "https://www.w3.org/ns/activitystreams#Image"
+    const val PERSON = "https://www.w3.org/ns/activitystreams#Person"
 }
