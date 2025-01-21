@@ -57,7 +57,7 @@ publishing {
     publications {
         register<MavenPublication>("maven") {
             groupId = "dev.usbharu"
-            artifactId = "http-signature"
+            artifactId = "activity-streams-serialization"
             version = project.version.toString()
             from(components["kotlin"])
         }
