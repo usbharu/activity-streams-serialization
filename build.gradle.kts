@@ -45,7 +45,7 @@ publishing {
 
             credentials(HttpHeaderCredentials::class.java) {
                 name = "Authorization"
-                value = project.findProperty("gpr.gitea") as String? ?: System.getenv("GITEA")
+                value = "Bearer " + (project.findProperty("gpr.gitea") as String? ?: System.getenv("GITEA"))
             }
 
             authentication {
