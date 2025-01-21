@@ -1,9 +1,10 @@
 plugins {
-    kotlin("jvm") version "2.1.0"
+    alias(libs.plugins.kotlin.jvm)
+    id("maven-publish")
 }
 
 group = "dev.usbharu.hideout"
-version = "1.0-SNAPSHOT"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -11,16 +12,54 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
-    testImplementation("com.github.jsonld-java:jsonld-java:0.13.6")
+    compileOnly(libs.kotlinx.serialization)
+    compileOnly(libs.jackson)
+
+    testImplementation(libs.kotlinx.serialization)
+    testImplementation(libs.jackson)
+    testImplementation(libs.jsonld.java)
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(8)
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/usbharu/activity-streams-serialization")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "Gitea"
+            url = uri("https://git.usbharu.dev/api/packages/usbharu/maven")
+
+            credentials(HttpHeaderCredentials::class.java) {
+                name = "Authorization"
+                value = project.findProperty("gpr.gitea") as String? ?: System.getenv("GITEA")
+            }
+
+            authentication {
+                create<HttpHeaderAuthentication>("header")
+            }
+        }
+    }
+
+    publications {
+        register<MavenPublication>("maven") {
+            groupId = "dev.usbharu"
+            artifactId = "http-signature"
+            version = project.version.toString()
+            from(components["kotlin"])
+        }
+    }
 }

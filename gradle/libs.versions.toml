@@ -1,0 +1,10 @@
+[versions]
+
+[libraries]
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }
+jackson = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.18.2" }
+jsonld-java = { module = "com.github.jsonld-java:jsonld-java", version = "0.13.6" }
+[bundles]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.1.0" }
