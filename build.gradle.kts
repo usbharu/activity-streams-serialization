@@ -3,8 +3,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "dev.usbharu.hideout"
-version = "0.2.0-SNAPSHOT"
+group = "dev.usbharu"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
