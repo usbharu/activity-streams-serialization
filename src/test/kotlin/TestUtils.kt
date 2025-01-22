@@ -5,6 +5,7 @@ import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.Default
 import dev.usbharu.activitystreamsserialization.json.JsonArray
 import dev.usbharu.activitystreamsserialization.json.impl.KotlinxSerializationConverter
 import dev.usbharu.activitystreamsserialization.other.JsonLd
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.asTypeOfNull
 import kotlinx.serialization.json.Json
 import kotlin.test.assertEquals
@@ -26,8 +27,12 @@ fun assertObjects(jsonLd: JsonLd, string: String) {
     assertEquals(Json.parseToJsonElement(expected), Json.parseToJsonElement(actual))
 }
 
-inline fun <reified T : JsonLd> checkDeserialize(checkJson: String, type: String): T {
-    val t = DefaultObjectFactory.create(preprocess(checkJson)[0]).asTypeOfNull<T>(type)
+inline fun <reified T : JsonLd> checkDeserialize(
+    checkJson: String,
+    type: String,
+    objectFactory: ObjectFactory = DefaultObjectFactory
+): T {
+    val t = objectFactory.create(preprocess(checkJson)[0]).asTypeOfNull<T>(type)
     assertNotNull(t)
     return t
 }

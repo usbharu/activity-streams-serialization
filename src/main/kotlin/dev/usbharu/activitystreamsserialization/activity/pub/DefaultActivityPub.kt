@@ -7,4 +7,7 @@ class DefaultActivityPub(
     override var objectFactory: ObjectFactory = ActivityPubObjectFactory,
     override var json: JsonNode
 ) : AbstractActivityPub() {
+    override fun toString(): String {
+        return "DefaultActivityPub(json=$json)"
+    }
 }
