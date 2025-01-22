@@ -1,4 +1,4 @@
-package dev.usbharu.activitystreamsserialization.activity
+package dev.usbharu.activitystreamsserialization.other
 
 import dev.usbharu.activitystreamsserialization.json.JsonNode
 import dev.usbharu.activitystreamsserialization.json.JsonObject

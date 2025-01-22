@@ -1,10 +1,10 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonNumber
 import dev.usbharu.activitystreamsserialization.json.JsonObject
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
 interface Collection : dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object {
     var totalItems: UInt?

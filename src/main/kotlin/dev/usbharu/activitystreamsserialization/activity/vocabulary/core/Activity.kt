@@ -1,7 +1,7 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.activity.Properties
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
 
 sealed interface InternalActivity : Object, ActivityOrRelationship {

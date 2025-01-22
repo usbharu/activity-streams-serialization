@@ -1,6 +1,7 @@
-package dev.usbharu.activitystreamsserialization.activity
+package dev.usbharu.activitystreamsserialization.other
 
 
+import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.ObjectOrLink
 import dev.usbharu.activitystreamsserialization.json.JsonNode
@@ -10,7 +11,7 @@ import dev.usbharu.activitystreamsserialization.json.toJsonArray
 import java.net.URI
 
 interface JsonLd {
-    var objectFactory:ObjectFactory
+    var objectFactory: ObjectFactory
     var json: JsonNode
     val jsonObject: JsonObject
         get() {

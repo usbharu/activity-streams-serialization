@@ -1,7 +1,7 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
-import dev.usbharu.activitystreamsserialization.activity.JsonLd
 import dev.usbharu.activitystreamsserialization.activity.Properties
+import dev.usbharu.activitystreamsserialization.other.JsonLd
 
 interface ActivityOrRelationship : JsonLd {
     var `object`: List<ObjectOrLink>

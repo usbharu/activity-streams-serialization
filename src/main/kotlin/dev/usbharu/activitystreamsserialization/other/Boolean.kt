@@ -1,6 +1,5 @@
 package dev.usbharu.activitystreamsserialization.other
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.ObjectOrLinkOrDateTimeOrBoolean
 import dev.usbharu.activitystreamsserialization.json.JsonNode

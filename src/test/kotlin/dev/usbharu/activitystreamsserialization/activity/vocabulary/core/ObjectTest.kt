@@ -3,11 +3,11 @@ package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 import assertObjects
 import checkDeserialize
 import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.asTypeOfNull
-import dev.usbharu.activitystreamsserialization.activity.create
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.dsl.JsonLdBuilder
 import dev.usbharu.activitystreamsserialization.other.LangString
+import dev.usbharu.activitystreamsserialization.other.asTypeOfNull
+import dev.usbharu.activitystreamsserialization.other.create
 import dev.usbharu.activitystreamsserialization.other.defaultOrNull
 import org.junit.jupiter.api.Test
 import preprocess

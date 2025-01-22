@@ -1,6 +1,6 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.impl
 
-import dev.usbharu.activitystreamsserialization.activity.JsonLd
+import dev.usbharu.activitystreamsserialization.other.JsonLd
 
 abstract class AbstractActivityStream : AbstractActor, AbstractActivity, AbstractCore, AbstractObject, JsonLd {
     override fun isObject(): Boolean {

@@ -1,6 +1,5 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.actor.Person
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Link
@@ -10,6 +9,7 @@ import dev.usbharu.activitystreamsserialization.activity.vocabulary.`object`.Ima
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.`object`.Note
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
 class JsonLdBuilder(var objectFactory: ObjectFactory = DefaultObjectFactory) {
     fun Object(block: ObjectBuilder.() -> Unit = {}): Object {

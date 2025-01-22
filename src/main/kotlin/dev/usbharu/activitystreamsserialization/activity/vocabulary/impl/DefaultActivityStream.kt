@@ -1,7 +1,7 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.impl
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonNode
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
 class DefaultActivityStream(override var json: JsonNode, override var objectFactory: ObjectFactory) :
     AbstractActivityStream() {

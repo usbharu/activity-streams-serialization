@@ -1,9 +1,7 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.ObjectFactory
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.create
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Link
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.ObjectOrLink
@@ -12,7 +10,9 @@ import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.Default
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
 import dev.usbharu.activitystreamsserialization.other.LangString
+import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.Uri
+import dev.usbharu.activitystreamsserialization.other.create
 import java.net.URI
 import java.time.OffsetDateTime
 

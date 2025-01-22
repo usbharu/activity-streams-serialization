@@ -1,11 +1,11 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
-import dev.usbharu.activitystreamsserialization.activity.JsonLd
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.Type
 import dev.usbharu.activitystreamsserialization.json.JsonNumber
 import dev.usbharu.activitystreamsserialization.json.JsonString
 import dev.usbharu.activitystreamsserialization.json.toJsonArray
+import dev.usbharu.activitystreamsserialization.other.JsonLd
 import dev.usbharu.activitystreamsserialization.other.Uri
 
 interface Link : ObjectOrLinkOrDateTimeOrBoolean, ObjectOrLink, UriOrLink, ImageOrLink, CollectionPageOrLink,
