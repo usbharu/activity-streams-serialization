@@ -2,13 +2,14 @@ package dev.usbharu.activitystreamsserialization.activity.pub
 
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Collection
+import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.OrderedCollection
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.toJsonArray
 import dev.usbharu.activitystreamsserialization.other.JsonLd
 import dev.usbharu.activitystreamsserialization.other.LangString
 
-interface ActivityPubActor : JsonLd {
+interface ActivityPubActor : Object, JsonLd {
     var inbox: List<OrderedCollection>
         get() {
             val jsonNode = jsonObject.obtain(Properties.INBOX) ?: return emptyList()
