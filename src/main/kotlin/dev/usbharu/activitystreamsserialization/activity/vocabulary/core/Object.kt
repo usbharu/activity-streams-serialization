@@ -2,7 +2,6 @@ package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
 import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
 import dev.usbharu.activitystreamsserialization.json.toJsonArray
@@ -98,7 +97,7 @@ interface Object : ObjectOrLink, JsonLd {
                 require(it.isObject)
                 it as JsonObject
                 if (it[Properties.TYPE] == JsonString(Type.LINK)) {
-                    DefaultObjectFactory.create(it) as Link
+                    objectFactory.create(it) as Link
                 } else {
                     Uri(it)
                 }
@@ -246,7 +245,7 @@ fun Object?.icon(objectFactory: ObjectFactory? = this?.objectFactory): List<Imag
     }
     requireNotNull(objectFactory)
     val jsonNode = jsonObject.obtain(Properties.ICON) ?: return emptyList()
-    return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
+    return jsonNode.asArray().map { objectFactory.create(it) as ImageOrLink }
 }
 
 fun Object?.image(objectFactory: ObjectFactory? = this?.objectFactory): List<ImageOrLink> {
@@ -255,7 +254,7 @@ fun Object?.image(objectFactory: ObjectFactory? = this?.objectFactory): List<Ima
     }
     requireNotNull(objectFactory)
     val jsonNode = jsonObject.obtain(Properties.IMAGE) ?: return emptyList()
-    return jsonNode.asArray().map { DefaultObjectFactory.create(it) as ImageOrLink }
+    return jsonNode.asArray().map { objectFactory.create(it) as ImageOrLink }
 }
 
 fun Object?.inReplyTo(objectFactory: ObjectFactory? = this?.objectFactory): List<ObjectOrLink> {

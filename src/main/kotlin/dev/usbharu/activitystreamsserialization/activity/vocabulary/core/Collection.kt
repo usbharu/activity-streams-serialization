@@ -1,7 +1,6 @@
 package dev.usbharu.activitystreamsserialization.activity.vocabulary.core
 
 import dev.usbharu.activitystreamsserialization.activity.Properties
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonNumber
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
@@ -20,7 +19,7 @@ interface Collection : dev.usbharu.activitystreamsserialization.activity.vocabul
         get() {
             val jsonArray = jsonObject.obtain(Properties.CURRENT)?.asArray() ?: return null
             return jsonArray.firstOrNull()
-                ?.let { DefaultObjectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
+                ?.let { objectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.CURRENT, value?.json)
 
@@ -28,7 +27,7 @@ interface Collection : dev.usbharu.activitystreamsserialization.activity.vocabul
         get() {
             val jsonArray = jsonObject.obtain(Properties.FIRST)?.asArray() ?: return null
             return jsonArray.firstOrNull()
-                ?.let { DefaultObjectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
+                ?.let { objectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.FIRST, value?.json)
 
@@ -36,7 +35,7 @@ interface Collection : dev.usbharu.activitystreamsserialization.activity.vocabul
         get() {
             val jsonArray = jsonObject.obtain(Properties.LAST)?.asArray() ?: return null
             return jsonArray.firstOrNull()
-                ?.let { DefaultObjectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
+                ?.let { objectFactory.create(it) as dev.usbharu.activitystreamsserialization.activity.vocabulary.core.CollectionPageOrLink }
         }
         set(value) = jsonObject.setOrRemove(Properties.LAST, value?.json)
 
