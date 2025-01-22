@@ -6,7 +6,7 @@ import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
 object DefaultObjectFactory : ObjectFactory {
     override fun create(jsonNode: JsonNode): JsonLd {
-        return DefaultActivityStream(jsonNode, this)
+        return DefaultActivityVocabulary(jsonNode, this)
     }
 
 }

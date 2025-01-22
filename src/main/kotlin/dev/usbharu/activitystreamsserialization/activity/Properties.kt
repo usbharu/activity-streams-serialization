@@ -65,6 +65,20 @@ object Properties {
     const val DESCRIBES = "https://www.w3.org/ns/activitystreams#describes"
     const val FORMER_TYPE = "https://www.w3.org/ns/activitystreams#formerType"
     const val DELETED = "https://www.w3.org/ns/activitystreams#deleted"
+    const val SHARED_INBOX = "https://www.w3.org/ns/activitystreams#sharedInbox"
+    const val PROXY_URL = "https://www.w3.org/ns/activitystreams#proxyUrl"
+    const val OAUTH_AUTHORIZATION_ENDPOINT = "https://www.w3.org/ns/activitystreams#oauthAuthorizationEndpoint"
+    const val OAUTH_TOKEN_ENDPOINT = "https://www.w3.org/ns/activitystreams#oauthTokenEndpoint"
+    const val PROVIDE_CLIENT_KEY = "https://www.w3.org/ns/activitystreams#provideClientKey"
+    const val SIGN_CLIENT_KEY = "https://www.w3.org/ns/activitystreams#signClientKey"
+    const val PREFERRED_USERNAME = "https://www.w3.org/ns/activitystreams#preferredUsername"
+    const val INBOX = "https://www.w3.org/ns/activitystreams#inbox"
+    const val OUTBOX = "https://www.w3.org/ns/activitystreams#outbox"
+    const val FOLLOWERS = "https://www.w3.org/ns/activitystreams#followers"
+    const val FOLLOWING = "https://www.w3.org/ns/activitystreams#following"
+    const val LIKED = "https://www.w3.org/ns/activitystreams#liked"
+    const val STREAMS = "https://www.w3.org/ns/activitystreams#streams"
+    const val ENDPOINTS = "https://www.w3.org/ns/activitystreams#endpoints"
 }
 
 object Type {
