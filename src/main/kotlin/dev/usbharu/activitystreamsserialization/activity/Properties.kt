@@ -72,7 +72,7 @@ object Properties {
     const val PROVIDE_CLIENT_KEY = "https://www.w3.org/ns/activitystreams#provideClientKey"
     const val SIGN_CLIENT_KEY = "https://www.w3.org/ns/activitystreams#signClientKey"
     const val PREFERRED_USERNAME = "https://www.w3.org/ns/activitystreams#preferredUsername"
-    const val INBOX = "https://www.w3.org/ns/activitystreams#inbox"
+    const val INBOX = "http://www.w3.org/ns/ldp#inbox"
     const val OUTBOX = "https://www.w3.org/ns/activitystreams#outbox"
     const val FOLLOWERS = "https://www.w3.org/ns/activitystreams#followers"
     const val FOLLOWING = "https://www.w3.org/ns/activitystreams#following"

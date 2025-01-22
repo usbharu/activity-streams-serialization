@@ -1,5 +1,7 @@
 package dev.usbharu.activitystreamsserialization.activity.json.impl
 
+import com.github.jsonldjava.core.JsonLdProcessor
+import com.github.jsonldjava.utils.JsonUtils
 import dev.usbharu.activitystreamsserialization.activity.Type
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.attachment
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.filterBy
@@ -111,5 +113,31 @@ class KotlinxSerializationConverterTest {
         val convert = KotlinxSerializationConverter.convert(create.json)
 
         println(Json.encodeToString(convert))
+    }
+
+    @Test
+    fun test2() {
+        val fromString = JsonUtils.fromString(
+            """{
+  "@context": ["https://www.w3.org/ns/activitystreams",
+               {"@language": "ja"}],
+  "type": "Person",
+  "id": "https://kenzoishii.example.com/",
+  "following": "https://kenzoishii.example.com/following.json",
+  "followers": "https://kenzoishii.example.com/followers.json",
+  "liked": "https://kenzoishii.example.com/liked.json",
+  "inbox": "https://kenzoishii.example.com/inbox.json",
+  "outbox": "https://kenzoishii.example.com/feed.json",
+  "preferredUsername": "kenzoishii",
+  "name": "石井健蔵",
+  "summary": "この方はただの例です",
+  "icon": [
+    "https://kenzoishii.example.com/image/165987aklre4"
+  ]
+}"""
+        )
+
+        val expand = JsonLdProcessor.expand(fromString)
+        println(JsonUtils.toPrettyString(expand))
     }
 }
