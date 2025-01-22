@@ -1,0 +1,11 @@
+package dev.usbharu.activitystreamsserialization.activity.vocabulary.impl
+
+import dev.usbharu.activitystreamsserialization.activity.JsonLd
+
+abstract class AbstractActivityStream : AbstractActor, AbstractActivity, AbstractCore, AbstractObject, JsonLd {
+    override fun isObject(): Boolean {
+        return isActor() || isActivity() || isCore() || isObject2()
+    }
+
+
+}

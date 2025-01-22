@@ -1,10 +1,11 @@
+
 import com.github.jsonldjava.core.JsonLdProcessor
 import com.github.jsonldjava.utils.JsonUtils
-import dev.usbharu.hideout.activitystreams.JsonLd
-import dev.usbharu.hideout.activitystreams.asTypeOfNull
-import dev.usbharu.hideout.activitystreams.impl.DefaultObjectFactory
-import dev.usbharu.hideout.activitystreams.json.JsonArray
-import dev.usbharu.hideout.activitystreams.json.impl.KotlinxSerializationConverter
+import dev.usbharu.activitystreamsserialization.activity.JsonLd
+import dev.usbharu.activitystreamsserialization.activity.asTypeOfNull
+import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
+import dev.usbharu.activitystreamsserialization.json.JsonArray
+import dev.usbharu.activitystreamsserialization.json.impl.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
