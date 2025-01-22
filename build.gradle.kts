@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.usbharu.hideout"
-version = "0.2.0-SNAPSHOT"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
@@ -56,10 +56,11 @@ publishing {
 
     publications {
         register<MavenPublication>("maven") {
-            groupId = "dev.usbharu"
-            artifactId = "activity-streams-serialization"
+            groupId = project.group.toString()
+            artifactId = project.name
             version = project.version.toString()
             from(components["kotlin"])
+            artifact(tasks["kotlinSourcesJar"])
         }
     }
 }
