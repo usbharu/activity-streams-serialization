@@ -102,9 +102,9 @@ class PersonBuilder(objectFactory: ObjectFactory = ActivityPubObjectFactory, ldB
         return this
     }
 
-    fun endpoints(endpointBuilder: EndpointBuilder.() -> List<Endpoint>): PersonBuilder {
-        val endpointBuilder1 = EndpointBuilder().endpointBuilder()
-        endpoints(endpointBuilder1)
+    fun endpoints(block: EndpointsBuilder.() -> List<Endpoint> = { emptyList() }): PersonBuilder {
+        val endpointList = EndpointsBuilder(objectFactory).block()
+        endpoints(endpointList)
         return this
     }
 }

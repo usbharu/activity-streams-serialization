@@ -5,66 +5,74 @@ import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import java.net.URI
 
+class EndpointsBuilder(var objectFactory: ObjectFactory) {
+    fun Endpoint(block: EndpointBuilder.() -> Unit = {}): Endpoint {
+        val endpointBuilder = EndpointBuilder(objectFactory)
+        endpointBuilder.block()
+        return endpointBuilder.endpoint
+    }
+}
+
 class EndpointBuilder(var objectFactory: ObjectFactory) {
-    val endpoints = Endpoint(objectFactory, JsonObject(mutableMapOf()))
+    val endpoint = Endpoint(objectFactory, JsonObject(mutableMapOf()))
 
     fun proxyUrl(uri: URI?): EndpointBuilder {
-        endpoints.proxyUrl += uri ?: return this
+        endpoint.proxyUrl += uri ?: return this
         return this
     }
 
     fun proxyUrl(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.proxyUrl += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.proxyUrl += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 
     fun oauthAuthorizationEndpoint(uri: URI?): EndpointBuilder {
-        endpoints.oauthAuthorizationEndpoint += uri ?: return this
+        endpoint.oauthAuthorizationEndpoint += uri ?: return this
         return this
     }
 
     fun oauthAuthorizationEndpoint(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.oauthAuthorizationEndpoint += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.oauthAuthorizationEndpoint += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 
     fun oauthTokenEndpoint(uri: URI?): EndpointBuilder {
-        endpoints.oauthTokenEndpoint += uri ?: return this
+        endpoint.oauthTokenEndpoint += uri ?: return this
         return this
     }
 
     fun oauthTokenEndpoint(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.oauthTokenEndpoint += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.oauthTokenEndpoint += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 
     fun provideClientKey(uri: URI?): EndpointBuilder {
-        endpoints.provideClientKey += uri ?: return this
+        endpoint.provideClientKey += uri ?: return this
         return this
     }
 
     fun provideClientKey(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.provideClientKey += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.provideClientKey += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 
     fun signClientKey(uri: URI?): EndpointBuilder {
-        endpoints.signClientKey += uri ?: return this
+        endpoint.signClientKey += uri ?: return this
         return this
     }
 
     fun signClientKey(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.signClientKey += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.signClientKey += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 
     fun sharedInbox(uri: URI?): EndpointBuilder {
-        endpoints.sharedInbox += uri ?: return this
+        endpoint.sharedInbox += uri ?: return this
         return this
     }
 
     fun sharedInbox(proxyUrlList: List<URI?>?): EndpointBuilder {
-        endpoints.sharedInbox += proxyUrlList.orEmpty().filterNotNull()
+        endpoint.sharedInbox += proxyUrlList.orEmpty().filterNotNull()
         return this
     }
 }
