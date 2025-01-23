@@ -69,7 +69,7 @@ class ObjectTest {
 }""", Type.OBJECT
         )
 
-        assertContentEquals(listOf(JsonLdBuilder().Object()), checkDeserialize.attachment)
+        assertContentEquals(listOf(JsonLdBuilder(DefaultObjectFactory).Object()), checkDeserialize.attachment)
     }
 
     @Test
@@ -115,7 +115,7 @@ class ObjectTest {
 }""", Type.OBJECT
         )
 
-        assertContentEquals(listOf(JsonLdBuilder().Object()), deserialize.attributedTo)
+        assertContentEquals(listOf(JsonLdBuilder(DefaultObjectFactory).Object()), deserialize.attributedTo)
     }
 
     @Test
@@ -150,7 +150,10 @@ class ObjectTest {
 }""", Type.OBJECT
         )
 
-        assertContentEquals(listOf(JsonLdBuilder().Link("https://example.com")), deserialize.attributedTo)
+        assertContentEquals(
+            listOf(JsonLdBuilder(DefaultObjectFactory).Link("https://example.com")),
+            deserialize.attributedTo
+        )
     }
 
     @Test
