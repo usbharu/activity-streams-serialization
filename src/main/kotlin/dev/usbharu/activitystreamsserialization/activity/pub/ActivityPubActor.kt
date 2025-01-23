@@ -1,75 +1,57 @@
 package dev.usbharu.activitystreamsserialization.activity.pub
 
 import dev.usbharu.activitystreamsserialization.activity.Properties
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Collection
 import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.OrderedCollection
 import dev.usbharu.activitystreamsserialization.json.JsonObject
+import dev.usbharu.activitystreamsserialization.json.JsonString
 import dev.usbharu.activitystreamsserialization.json.toJsonArray
 import dev.usbharu.activitystreamsserialization.other.JsonLd
 import dev.usbharu.activitystreamsserialization.other.LangString
+import java.net.URI
 
 interface ActivityPubActor : Object, JsonLd {
-    var inbox: List<OrderedCollection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.INBOX) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as OrderedCollection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.INBOX, value.map { it.json }.toJsonArray()
-            )
-        }
-    var outbox: List<OrderedCollection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.OUTBOX) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as OrderedCollection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.OUTBOX, value.map { it.json }.toJsonArray()
-            )
-        }
-    var following: List<Collection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.FOLLOWING) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as OrderedCollection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.FOLLOWING, value.map { it.json }.toJsonArray()
-            )
-        }
-    var followers: List<Collection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.FOLLOWERS) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as OrderedCollection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.FOLLOWERS, value.map { it.json }.toJsonArray()
-            )
-        }
-    var liked: List<Collection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.LIKED) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as Collection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.LIKED, value.map { it.json }.toJsonArray()
-            )
-        }
-    var streams: List<Collection>
-        get() {
-            val jsonNode = jsonObject.obtain(Properties.STREAMS) ?: return emptyList()
-            return jsonNode.asArray().map { objectFactory.create(it) as Collection }
-        }
-        set(value) {
-            jsonObject.setOrRemove(
-                Properties.STREAMS, value.map { it.json }.toJsonArray()
-            )
-        }
+    var inbox: List<URI>
+        get() = jsonObject.obtain(Properties.INBOX)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.INBOX,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
+    var outbox: List<URI>
+        get() = jsonObject.obtain(Properties.OUTBOX)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.OUTBOX,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
+    var following: List<URI>
+        get() = jsonObject.obtain(Properties.FOLLOWING)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.FOLLOWING,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
+    var followers: List<URI>
+        get() = jsonObject.obtain(Properties.FOLLOWERS)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.FOLLOWERS,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
+    var liked: List<URI>
+        get() = jsonObject.obtain(Properties.LIKED)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.LIKED,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
+    var streams: List<URI>
+        get() = jsonObject.obtain(Properties.STREAMS)?.asArray().orEmpty().mapNotNull { it.asObjectOrNull() }
+            .mapNotNull { it.obtain(Properties.ID)?.asStringLiteralOrNull() }.map { URI.create(it.value) }
+        set(value) = jsonObject.setOrRemove(
+            Properties.STREAMS,
+            value.map { JsonObject(mutableMapOf(Properties.ID to JsonString(it.toString()))) }.toJsonArray()
+        )
     var preferredUsername: List<LangString>
         get() {
             val jsonNode = jsonObject.obtain(Properties.PREFERRED_USERNAME) ?: return emptyList()
