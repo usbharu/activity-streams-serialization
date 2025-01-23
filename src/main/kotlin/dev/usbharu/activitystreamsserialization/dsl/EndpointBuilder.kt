@@ -26,6 +26,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
         return this
     }
 
+    fun proxyUrl(string: String?): EndpointBuilder {
+        proxyUrl(URI(string ?: return this))
+        return this
+    }
+
     fun oauthAuthorizationEndpoint(uri: URI?): EndpointBuilder {
         endpoint.oauthAuthorizationEndpoint += uri ?: return this
         return this
@@ -33,6 +38,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
 
     fun oauthAuthorizationEndpoint(proxyUrlList: List<URI?>?): EndpointBuilder {
         endpoint.oauthAuthorizationEndpoint += proxyUrlList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun oauthAuthorizationEndpoint(string: String?): EndpointBuilder {
+        oauthAuthorizationEndpoint(URI(string ?: return this))
         return this
     }
 
@@ -46,6 +56,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
         return this
     }
 
+    fun oauthTokenEndpoint(string: String?): EndpointBuilder {
+        oauthTokenEndpoint(URI(string ?: return this))
+        return this
+    }
+
     fun provideClientKey(uri: URI?): EndpointBuilder {
         endpoint.provideClientKey += uri ?: return this
         return this
@@ -53,6 +68,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
 
     fun provideClientKey(proxyUrlList: List<URI?>?): EndpointBuilder {
         endpoint.provideClientKey += proxyUrlList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun provideClientKey(string: String?): EndpointBuilder {
+        provideClientKey(URI(string ?: return this))
         return this
     }
 
@@ -66,6 +86,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
         return this
     }
 
+    fun signClientKey(string: String?): EndpointBuilder {
+        signClientKey(URI(string ?: return this))
+        return this
+    }
+
     fun sharedInbox(uri: URI?): EndpointBuilder {
         endpoint.sharedInbox += uri ?: return this
         return this
@@ -73,6 +98,11 @@ class EndpointBuilder(var objectFactory: ObjectFactory) {
 
     fun sharedInbox(proxyUrlList: List<URI?>?): EndpointBuilder {
         endpoint.sharedInbox += proxyUrlList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun sharedInbox(string: String?): EndpointBuilder {
+        sharedInbox(URI(string ?: return this))
         return this
     }
 }
