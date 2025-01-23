@@ -1,9 +1,9 @@
 
 import com.github.jsonldjava.core.JsonLdProcessor
 import com.github.jsonldjava.utils.JsonUtils
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonArray
 import dev.usbharu.activitystreamsserialization.json.impl.KotlinxSerializationConverter
+import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.other.JsonLd
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.asTypeOfNull

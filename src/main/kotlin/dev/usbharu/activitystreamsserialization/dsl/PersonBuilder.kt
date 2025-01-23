@@ -1,20 +1,20 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.pub.ActivityPubObjectFactory
-import dev.usbharu.activitystreamsserialization.activity.pub.ActivityPubPerson
-import dev.usbharu.activitystreamsserialization.activity.pub.Endpoint
+import dev.usbharu.activitystreamsserialization.model.Type
+import dev.usbharu.activitystreamsserialization.model.activitypub.Endpoint
+import dev.usbharu.activitystreamsserialization.model.actor.Person
+import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.other.LangString
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 import java.net.URI
 
-class PersonBuilder(objectFactory: ObjectFactory = ActivityPubObjectFactory, ldBuilder: JsonLdBuilder) :
+class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: JsonLdBuilder) :
     ObjectBuilder(objectFactory, ldBuilder) {
 
-    val iObj = objectFactory.create<ActivityPubPerson>(Type.PERSON)
+    val iObj = objectFactory.create<Person>(Type.PERSON)
 
-    override val Object: ActivityPubPerson
+    override val Object: Person
         get() = iObj
 
     fun inbox(uri: URI?): PersonBuilder {

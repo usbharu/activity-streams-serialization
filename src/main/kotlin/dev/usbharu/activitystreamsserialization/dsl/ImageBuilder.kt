@@ -1,8 +1,8 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.`object`.Image
+import dev.usbharu.activitystreamsserialization.model.Type
+import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
+import dev.usbharu.activitystreamsserialization.model.`object`.Image
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 

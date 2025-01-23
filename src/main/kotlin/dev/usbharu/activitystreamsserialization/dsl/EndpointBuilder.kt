@@ -1,7 +1,7 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.pub.Endpoint
 import dev.usbharu.activitystreamsserialization.json.JsonObject
+import dev.usbharu.activitystreamsserialization.model.activitypub.Endpoint
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import java.net.URI
 

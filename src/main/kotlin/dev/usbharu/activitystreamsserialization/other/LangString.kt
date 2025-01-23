@@ -1,8 +1,8 @@
 package dev.usbharu.activitystreamsserialization.other
 
-import dev.usbharu.activitystreamsserialization.activity.Properties
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
+import dev.usbharu.activitystreamsserialization.model.Properties
 
 data class LangString(val language: String? = null, val value: String) {
     fun toJsonObject(): JsonObject {

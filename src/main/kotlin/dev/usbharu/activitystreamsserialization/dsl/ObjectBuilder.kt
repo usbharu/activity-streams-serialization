@@ -1,14 +1,14 @@
 package dev.usbharu.activitystreamsserialization.dsl
 
-import dev.usbharu.activitystreamsserialization.activity.Properties
-import dev.usbharu.activitystreamsserialization.activity.Type
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Link
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.Object
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.ObjectOrLink
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.UriOrLink
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
+import dev.usbharu.activitystreamsserialization.model.Properties
+import dev.usbharu.activitystreamsserialization.model.Type
+import dev.usbharu.activitystreamsserialization.model.core.Link
+import dev.usbharu.activitystreamsserialization.model.core.Object
+import dev.usbharu.activitystreamsserialization.model.core.ObjectOrLink
+import dev.usbharu.activitystreamsserialization.model.core.UriOrLink
+import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.other.LangString
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.Uri

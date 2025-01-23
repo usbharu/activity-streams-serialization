@@ -1,8 +1,8 @@
 package dev.usbharu.activitystreamsserialization.other
 
-import dev.usbharu.activitystreamsserialization.activity.Properties
-import dev.usbharu.activitystreamsserialization.activity.vocabulary.core.ObjectOrLinkOrDateTimeOrBoolean
 import dev.usbharu.activitystreamsserialization.json.JsonNode
+import dev.usbharu.activitystreamsserialization.model.Properties
+import dev.usbharu.activitystreamsserialization.model.core.ObjectOrLinkOrDateTimeOrBoolean
 import kotlin.Boolean
 
 class Boolean(override var json: JsonNode) : ObjectOrLinkOrDateTimeOrBoolean {
