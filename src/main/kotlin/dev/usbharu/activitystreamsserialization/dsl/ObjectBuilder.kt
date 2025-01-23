@@ -18,7 +18,7 @@ import java.time.OffsetDateTime
 
 
 open class ObjectBuilder(
-    var objectFactory: ObjectFactory = DefaultObjectFactory, private val ldBuilder: JsonLdBuilder
+    var objectFactory: ObjectFactory = DefaultObjectFactory, protected val ldBuilder: JsonLdBuilder
 ) {
 
     open val Object = objectFactory.create<Object>(Type.OBJECT)
