@@ -6,7 +6,7 @@ import java.net.URI
 class DslTest {
     @Test
     fun personBuilder() {
-        val person = JsonLdBuilder().Person {
+        val person = ActivityBuilder().Person {
             endpoints {
                 listOf(
                     Endpoint {

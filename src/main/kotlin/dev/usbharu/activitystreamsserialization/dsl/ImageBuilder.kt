@@ -6,7 +6,7 @@ import dev.usbharu.activitystreamsserialization.model.`object`.Image
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 
-class ImageBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: JsonLdBuilder) :
+class ImageBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: ActivityBuilder) :
     ObjectBuilder(objectFactory, ldBuilder) {
 
     val iObj = objectFactory.create<Image>(Type.IMAGE)

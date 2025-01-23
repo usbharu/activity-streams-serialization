@@ -18,7 +18,7 @@ import java.time.OffsetDateTime
 
 
 open class ObjectBuilder(
-    var objectFactory: ObjectFactory = DefaultObjectFactory, protected val ldBuilder: JsonLdBuilder
+    var objectFactory: ObjectFactory = DefaultObjectFactory, protected val ldBuilder: ActivityBuilder
 ) {
 
     open val Object = objectFactory.create<Object>(Type.OBJECT)
@@ -43,7 +43,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun attachment(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun attachment(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         attachment(objectOrLinkBuilder1)
         return this
@@ -116,7 +116,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun attributedTo(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun attributedTo(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         attributedTo(objectOrLinkBuilder1)
         return this
@@ -132,7 +132,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun audience(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun audience(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         audience(objectOrLinkBuilder1)
         return this
@@ -148,7 +148,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun context(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun context(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         context(objectOrLinkBuilder1)
         return this
@@ -164,7 +164,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun generator(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun generator(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         generator(objectOrLinkBuilder1)
         return this
@@ -180,7 +180,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun inReplyTo(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun inReplyTo(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         inReplyTo(objectOrLinkBuilder1)
         return this
@@ -196,7 +196,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun location(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun location(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         location(objectOrLinkBuilder1)
         return this
@@ -212,7 +212,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun tag(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun tag(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         tag(objectOrLinkBuilder1)
         return this
@@ -228,7 +228,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun to(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun to(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         to(objectOrLinkBuilder1)
         return this
@@ -244,7 +244,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun bto(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun bto(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         bto(objectOrLinkBuilder1)
         return this
@@ -260,7 +260,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun cc(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun cc(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         cc(objectOrLinkBuilder1)
         return this
@@ -276,7 +276,7 @@ open class ObjectBuilder(
         return this
     }
 
-    fun bcc(objectOrLinkBuilder: JsonLdBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
+    fun bcc(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
         bcc(objectOrLinkBuilder1)
         return this

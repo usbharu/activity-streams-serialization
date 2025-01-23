@@ -2,7 +2,7 @@ package dev.usbharu.activitystreamsserialization.model.core
 
 import assertObjects
 import checkDeserialize
-import dev.usbharu.activitystreamsserialization.dsl.JsonLdBuilder
+import dev.usbharu.activitystreamsserialization.dsl.ActivityBuilder
 import dev.usbharu.activitystreamsserialization.model.Type
 import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.other.LangString
@@ -70,12 +70,12 @@ class ObjectTest {
 }""", Type.OBJECT
         )
 
-        assertContentEquals(listOf(JsonLdBuilder(DefaultObjectFactory).Object()), checkDeserialize.attachment)
+        assertContentEquals(listOf(ActivityBuilder(DefaultObjectFactory).Object()), checkDeserialize.attachment)
     }
 
     @Test
     fun serializeAttachment() {
-        val object1 = JsonLdBuilder().Note {
+        val object1 = ActivityBuilder().Note {
             attachment {
                 listOf(
                     Image {
@@ -116,12 +116,12 @@ class ObjectTest {
 }""", Type.OBJECT
         )
 
-        assertContentEquals(listOf(JsonLdBuilder(DefaultObjectFactory).Object()), deserialize.attributedTo)
+        assertContentEquals(listOf(ActivityBuilder(DefaultObjectFactory).Object()), deserialize.attributedTo)
     }
 
     @Test
     fun serializeAttributedTo1() {
-        val value = JsonLdBuilder().Object {
+        val value = ActivityBuilder().Object {
             attributedTo {
                 listOf(
                     Object { })
@@ -152,14 +152,14 @@ class ObjectTest {
         )
 
         assertContentEquals(
-            listOf(JsonLdBuilder(DefaultObjectFactory).Link("https://example.com")),
+            listOf(ActivityBuilder(DefaultObjectFactory).Link("https://example.com")),
             deserialize.attributedTo
         )
     }
 
     @Test
     fun serializeAttributedTo2() {
-        val value = JsonLdBuilder().Object {
+        val value = ActivityBuilder().Object {
             attributedTo("https://example.com")
         }
 
@@ -187,7 +187,7 @@ class ObjectTest {
 
     @Test
     fun serializeEndTime() {
-        val value = JsonLdBuilder().Object {
+        val value = ActivityBuilder().Object {
             endTime(OffsetDateTime.parse("2015-01-01T06:00:00-08:00"))
         }
 

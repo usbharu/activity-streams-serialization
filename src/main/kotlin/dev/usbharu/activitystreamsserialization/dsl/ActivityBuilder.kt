@@ -11,7 +11,7 @@ import dev.usbharu.activitystreamsserialization.model.`object`.Image
 import dev.usbharu.activitystreamsserialization.model.`object`.Note
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 
-class JsonLdBuilder(var objectFactory: ObjectFactory = DefaultObjectFactory) {
+class ActivityBuilder(var objectFactory: ObjectFactory = DefaultObjectFactory) {
     fun Object(block: ObjectBuilder.() -> Unit = {}): Object {
         val objectBuilder = ObjectBuilder(objectFactory, this)
         objectBuilder.block()

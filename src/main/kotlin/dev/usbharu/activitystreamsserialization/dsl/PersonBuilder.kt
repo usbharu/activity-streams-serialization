@@ -9,7 +9,7 @@ import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 import java.net.URI
 
-class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: JsonLdBuilder) :
+class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: ActivityBuilder) :
     ObjectBuilder(objectFactory, ldBuilder) {
 
     val iObj = objectFactory.create<Person>(Type.PERSON)
