@@ -9,8 +9,6 @@ import dev.usbharu.activitystreamsserialization.other.create
 class ImageBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activityBuilder: ActivityBuilder) :
     ObjectBuilder(objectFactory, activityBuilder) {
 
-    val iObj = objectFactory.create<Image>(Type.IMAGE)
+    override val Object: Image = objectFactory.create<Image>(Type.IMAGE)
 
-    override val Object: Image
-        get() = iObj
 }

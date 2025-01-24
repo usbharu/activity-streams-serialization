@@ -31,4 +31,43 @@ class DslTest {
             }
         }
     }
+
+    @Test
+    fun actor() {
+
+        val person = ActivityBuilder().Person {
+            name("name")
+            id("https://example.com/id")
+            preferredUsername("preferredUsername")
+            inbox(URI.create("https://example.com/inbox"))
+            outbox(URI.create("https://example.com/outbox"))
+            following(URI.create("https://example.com/following"))
+            followers(URI.create("https://example.com/followers"))
+            publicKey {
+                listOf(
+                    Key {
+                        owner("https://example.com/owner-id")
+                        id("https://example.com/owner-id-key")
+                        publicKeyPem("--key--")
+                    }
+                )
+            }
+            icon {
+                listOf(
+                    Image {
+                        url("https://www.examples.com/icon")
+                    }
+                )
+            }
+            image {
+                listOf(
+                    Image {
+                        url("https://www.examples.com/image")
+                    }
+                )
+            }
+        }
+
+        println(person.json)
+    }
 }

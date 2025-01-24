@@ -12,6 +12,6 @@ interface W3idSecurityActor : JsonLd {
             }
         }
         set(value) {
-            return jsonObject.setOrRemove(Properties.TYPE, value.map { it.json }.toJsonArray())
+            return jsonObject.setOrRemove(Properties.PUBLIC_KEY, value.map { it.json }.toJsonArray())
         }
 }

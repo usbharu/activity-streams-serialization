@@ -17,7 +17,7 @@ class JsonArray(private val array: MutableList<JsonNode>) : JsonNode, MutableLis
     }
 
     override fun toString(): String {
-        return "[$array]"
+        return "$array"
     }
 
     override fun equals(other: Any?): Boolean {

@@ -16,19 +16,9 @@ import java.time.OffsetDateTime
 
 open class ObjectBuilder(
     var objectFactory: ObjectFactory = DefaultObjectFactory, protected val activityBuilder: ActivityBuilder
-) {
+) : AbstractJsonLdBuilder() {
 
-    open val Object = objectFactory.create<Object>(Type.OBJECT)
-
-    fun id(uri: URI?): ObjectBuilder {
-        Object.id = uri
-        return this
-    }
-
-    fun id(string: String?): ObjectBuilder {
-        id(URI.create(string ?: return this))
-        return this
-    }
+    override val Object = objectFactory.create<Object>(Type.OBJECT)
 
     fun attachment(objectOrLink: ObjectOrLink?): ObjectBuilder {
         Object.attachment += objectOrLink ?: return this

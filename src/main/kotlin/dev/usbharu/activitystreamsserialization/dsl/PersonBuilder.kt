@@ -130,7 +130,7 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
     }
 
     fun publicKey(keyList: List<Key?>?): PersonBuilder {
-        Object.publicKey += keyList.orEmpty().filterNotNull()
+        Object.publicKey = keyList.orEmpty().filterNotNull()
         return this
     }
 

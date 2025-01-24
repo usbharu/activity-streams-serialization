@@ -18,11 +18,11 @@ class Key(override var json: JsonNode) : JsonLd {
         }
     var publicKeyPem: String?
         get() {
-            val string = jsonObject.obtain(Properties.OWNER)?.asStringLiteralOrNull() ?: return null
+            val string = jsonObject.obtain(Properties.PUBLIC_KEY_PEM)?.asStringLiteralOrNull() ?: return null
             return string.value
         }
         set(value) {
-            jsonObject.setOrRemove(Properties.OWNER, JsonString.create(value))
+            jsonObject.setOrRemove(Properties.PUBLIC_KEY_PEM, JsonString.create(value))
         }
     override var objectFactory: ObjectFactory
         get() = TODO("Not yet implemented")

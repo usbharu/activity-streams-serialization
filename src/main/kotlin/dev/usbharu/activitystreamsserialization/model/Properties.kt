@@ -84,6 +84,7 @@ object Properties {
     const val MANUALLY_APPROVES_FOLLOWERS = "https://www.w3.org/ns/activitystreams#manuallyApprovesFollowers"
     const val FEATURED = "http://joinmastodon.org/ns#featured"
     const val DISCOVERABLE = "http://joinmastodon.org/ns#discoverable"
+    const val PUBLIC_KEY_PEM = "https://w3id.org/security#publicKeyPem"
 }
 
 object Type {

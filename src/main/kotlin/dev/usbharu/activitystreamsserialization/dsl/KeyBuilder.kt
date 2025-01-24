@@ -2,6 +2,7 @@ package dev.usbharu.activitystreamsserialization.dsl
 
 import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.model.w3idsecurity.Key
+import dev.usbharu.activitystreamsserialization.other.JsonLd
 import java.net.URI
 
 class KeysBuilder {
@@ -12,7 +13,7 @@ class KeysBuilder {
     }
 }
 
-class KeyBuilder() {
+class KeyBuilder : AbstractJsonLdBuilder() {
     val key = Key(JsonObject(mutableMapOf()))
     fun owner(uri: URI?): KeyBuilder {
         key.owner = uri
@@ -28,4 +29,6 @@ class KeyBuilder() {
         key.publicKeyPem = publicKeyPem
         return this
     }
+
+    override val Object: JsonLd = key
 }
