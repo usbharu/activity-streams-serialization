@@ -1,8 +1,6 @@
 package dev.usbharu.activitystreamsserialization.model.activitypub
 
-import dev.usbharu.activitystreamsserialization.json.JsonObject
-import dev.usbharu.activitystreamsserialization.json.JsonString
-import dev.usbharu.activitystreamsserialization.json.toJsonArray
+import dev.usbharu.activitystreamsserialization.json.*
 import dev.usbharu.activitystreamsserialization.model.Properties
 import dev.usbharu.activitystreamsserialization.model.core.Object
 import dev.usbharu.activitystreamsserialization.other.JsonLd
@@ -78,6 +76,22 @@ interface ActivityPubActor : Object, JsonLd {
         set(value) {
             jsonObject.setOrRemove(
                 Properties.ENDPOINTS, value.map { it.json }.toJsonArray()
+            )
+        }
+    var manuallyApprovesFollowers: Boolean?
+        get() {
+            return jsonObject.obtain(Properties.MANUALLY_APPROVES_FOLLOWERS)?.asArray().orEmpty().firstOrNull()
+                ?.asObjectOrNull()?.get(Properties.VALUE)?.asBooleanLiteralOrNull()?.value
+        }
+        set(value) {
+            jsonObject.setOrRemove(
+                Properties.MANUALLY_APPROVES_FOLLOWERS, JsonArray(
+                    mutableListOf(
+                        JsonObject(
+                            mutableMapOf(Properties.VALUE to JsonBoolean(value ?: return))
+                        )
+                    )
+                )
             )
         }
 }

@@ -79,6 +79,11 @@ object Properties {
     const val LIKED = "https://www.w3.org/ns/activitystreams#liked"
     const val STREAMS = "https://www.w3.org/ns/activitystreams#streams"
     const val ENDPOINTS = "https://www.w3.org/ns/activitystreams#endpoints"
+    const val OWNER = "https://w3id.org/security#owner"
+    const val PUBLIC_KEY = "https://w3id.org/security#publicKey"
+    const val MANUALLY_APPROVES_FOLLOWERS = "https://www.w3.org/ns/activitystreams#manuallyApprovesFollowers"
+    const val FEATURED = "http://joinmastodon.org/ns#featured"
+    const val DISCOVERABLE = "http://joinmastodon.org/ns#discoverable"
 }
 
 object Type {

@@ -50,6 +50,13 @@ interface JsonNode {
         return this as? JsonString
     }
 
+    fun asBooleanLiteralOrNull(): JsonBoolean? {
+        if (isLiteral.not()) {
+            return null
+        }
+        return this as? JsonBoolean
+    }
+
     fun asNumberLiteralOrNull(): JsonNumber? {
         if (isLiteral.not()) {
             return null
