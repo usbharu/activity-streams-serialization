@@ -18,4 +18,17 @@ class DslTest {
 
         println(person)
     }
+
+    @Test
+    fun image() {
+        ActivityBuilder().Person {
+            icon {
+                listOf(
+                    Image {
+                        url("https://www.examples.com")
+                    }
+                )
+            }
+        }
+    }
 }

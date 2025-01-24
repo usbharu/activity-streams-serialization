@@ -86,8 +86,8 @@ open class ObjectBuilder(
         return this
     }
 
-    fun icon(objectOrLinkBuilder: ImageBuilder.() -> List<ImageOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ImageBuilder(objectFactory, activityBuilder).objectOrLinkBuilder()
+    fun icon(objectOrLinkBuilder: ActivityBuilder.() -> List<ImageOrLink>): ObjectBuilder {
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         icon(objectOrLinkBuilder1)
         return this
     }
@@ -102,8 +102,8 @@ open class ObjectBuilder(
         return this
     }
 
-    fun image(objectOrLinkBuilder: ImageBuilder.() -> List<ImageOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ImageBuilder(objectFactory, activityBuilder).objectOrLinkBuilder()
+    fun image(objectOrLinkBuilder: ActivityBuilder.() -> List<ImageOrLink>): ObjectBuilder {
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         image(objectOrLinkBuilder1)
         return this
     }
