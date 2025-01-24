@@ -6,8 +6,8 @@ import dev.usbharu.activitystreamsserialization.model.`object`.Note
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 
-class NoteBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: ActivityBuilder) :
-    ObjectBuilder(objectFactory, ldBuilder) {
+class NoteBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activityBuilder: ActivityBuilder) :
+    ObjectBuilder(objectFactory, activityBuilder) {
 
     val iObj = objectFactory.create<Note>(Type.NOTE)
     override val Object: Note

@@ -4,13 +4,14 @@ import dev.usbharu.activitystreamsserialization.model.Type
 import dev.usbharu.activitystreamsserialization.model.activitypub.Endpoint
 import dev.usbharu.activitystreamsserialization.model.actor.Person
 import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
+import dev.usbharu.activitystreamsserialization.model.w3idsecurity.Key
 import dev.usbharu.activitystreamsserialization.other.LangString
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
 import dev.usbharu.activitystreamsserialization.other.create
 import java.net.URI
 
-class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuilder: ActivityBuilder) :
-    ObjectBuilder(objectFactory, ldBuilder) {
+class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activityBuilder: ActivityBuilder) :
+    ObjectBuilder(objectFactory, activityBuilder) {
 
     val iObj = objectFactory.create<Person>(Type.PERSON)
 
@@ -105,6 +106,38 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, ldBuild
     fun endpoints(block: EndpointsBuilder.() -> List<Endpoint> = { emptyList() }): PersonBuilder {
         val endpointList = EndpointsBuilder(objectFactory).block()
         endpoints(endpointList)
+        return this
+    }
+
+    fun manuallyApprovesFollowers(boolean: Boolean?): PersonBuilder {
+        Object.manuallyApprovesFollowers = boolean
+        return this
+    }
+
+    fun discoverable(boolean: Boolean?): PersonBuilder {
+        Object.discoverable = boolean
+        return this
+    }
+
+    fun featured(boolean: Boolean?): PersonBuilder {
+        Object.featured = boolean
+        return this
+    }
+
+    fun publicKey(key: Key?): PersonBuilder {
+        Object.publicKey += key ?: return this
+        return this
+    }
+
+    fun publicKey(keyList: List<Key?>?): PersonBuilder {
+        Object.publicKey += keyList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun publicKey(block: KeysBuilder.() -> List<Key> = { emptyList() }): PersonBuilder {
+        val keysBuilder = KeysBuilder()
+        val keyList = keysBuilder.block()
+        publicKey(keyList)
         return this
     }
 }

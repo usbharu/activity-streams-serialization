@@ -4,10 +4,7 @@ import dev.usbharu.activitystreamsserialization.json.JsonObject
 import dev.usbharu.activitystreamsserialization.json.JsonString
 import dev.usbharu.activitystreamsserialization.model.Properties
 import dev.usbharu.activitystreamsserialization.model.Type
-import dev.usbharu.activitystreamsserialization.model.core.Link
-import dev.usbharu.activitystreamsserialization.model.core.Object
-import dev.usbharu.activitystreamsserialization.model.core.ObjectOrLink
-import dev.usbharu.activitystreamsserialization.model.core.UriOrLink
+import dev.usbharu.activitystreamsserialization.model.core.*
 import dev.usbharu.activitystreamsserialization.model.impl.DefaultObjectFactory
 import dev.usbharu.activitystreamsserialization.other.LangString
 import dev.usbharu.activitystreamsserialization.other.ObjectFactory
@@ -18,7 +15,7 @@ import java.time.OffsetDateTime
 
 
 open class ObjectBuilder(
-    var objectFactory: ObjectFactory = DefaultObjectFactory, protected val ldBuilder: ActivityBuilder
+    var objectFactory: ObjectFactory = DefaultObjectFactory, protected val activityBuilder: ActivityBuilder
 ) {
 
     open val Object = objectFactory.create<Object>(Type.OBJECT)
@@ -44,7 +41,7 @@ open class ObjectBuilder(
     }
 
     fun attachment(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         attachment(objectOrLinkBuilder1)
         return this
     }
@@ -61,6 +58,53 @@ open class ObjectBuilder(
 
     fun content(defaultLangString: String): ObjectBuilder {
         Object.content += LangString(value = defaultLangString)
+        return this
+    }
+
+    fun summary(langString: LangString?): ObjectBuilder {
+        Object.summary += langString ?: return this
+        return this
+    }
+
+    fun summary(langStringList: List<LangString?>?): ObjectBuilder {
+        Object.summary = langStringList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun summary(defaultLangString: String): ObjectBuilder {
+        Object.summary += LangString(value = defaultLangString)
+        return this
+    }
+
+    fun icon(objectOrLink: ImageOrLink?): ObjectBuilder {
+        Object.icon += objectOrLink ?: return this
+        return this
+    }
+
+    fun icon(objectOrLinkList: List<ImageOrLink?>?): ObjectBuilder {
+        Object.icon = objectOrLinkList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun icon(objectOrLinkBuilder: ImageBuilder.() -> List<ImageOrLink>): ObjectBuilder {
+        val objectOrLinkBuilder1 = ImageBuilder(objectFactory, activityBuilder).objectOrLinkBuilder()
+        icon(objectOrLinkBuilder1)
+        return this
+    }
+
+    fun image(objectOrLink: ImageOrLink?): ObjectBuilder {
+        Object.image += objectOrLink ?: return this
+        return this
+    }
+
+    fun image(objectOrLinkList: List<ImageOrLink?>?): ObjectBuilder {
+        Object.image = objectOrLinkList.orEmpty().filterNotNull()
+        return this
+    }
+
+    fun image(objectOrLinkBuilder: ImageBuilder.() -> List<ImageOrLink>): ObjectBuilder {
+        val objectOrLinkBuilder1 = ImageBuilder(objectFactory, activityBuilder).objectOrLinkBuilder()
+        image(objectOrLinkBuilder1)
         return this
     }
 
@@ -117,7 +161,7 @@ open class ObjectBuilder(
     }
 
     fun attributedTo(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         attributedTo(objectOrLinkBuilder1)
         return this
     }
@@ -133,7 +177,7 @@ open class ObjectBuilder(
     }
 
     fun audience(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         audience(objectOrLinkBuilder1)
         return this
     }
@@ -149,7 +193,7 @@ open class ObjectBuilder(
     }
 
     fun context(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         context(objectOrLinkBuilder1)
         return this
     }
@@ -165,7 +209,7 @@ open class ObjectBuilder(
     }
 
     fun generator(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         generator(objectOrLinkBuilder1)
         return this
     }
@@ -181,7 +225,7 @@ open class ObjectBuilder(
     }
 
     fun inReplyTo(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         inReplyTo(objectOrLinkBuilder1)
         return this
     }
@@ -197,7 +241,7 @@ open class ObjectBuilder(
     }
 
     fun location(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         location(objectOrLinkBuilder1)
         return this
     }
@@ -213,7 +257,7 @@ open class ObjectBuilder(
     }
 
     fun tag(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         tag(objectOrLinkBuilder1)
         return this
     }
@@ -229,7 +273,7 @@ open class ObjectBuilder(
     }
 
     fun to(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         to(objectOrLinkBuilder1)
         return this
     }
@@ -245,7 +289,7 @@ open class ObjectBuilder(
     }
 
     fun bto(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         bto(objectOrLinkBuilder1)
         return this
     }
@@ -261,7 +305,7 @@ open class ObjectBuilder(
     }
 
     fun cc(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         cc(objectOrLinkBuilder1)
         return this
     }
@@ -277,7 +321,7 @@ open class ObjectBuilder(
     }
 
     fun bcc(objectOrLinkBuilder: ActivityBuilder.() -> List<ObjectOrLink>): ObjectBuilder {
-        val objectOrLinkBuilder1 = ldBuilder.objectOrLinkBuilder()
+        val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         bcc(objectOrLinkBuilder1)
         return this
     }
@@ -292,4 +336,33 @@ open class ObjectBuilder(
         return this
     }
 
+    fun startTime(startTime: OffsetDateTime?): ObjectBuilder {
+        Object.startTime = startTime
+        return this
+    }
+
+    fun startTime(string: String?): ObjectBuilder {
+        startTime(OffsetDateTime.parse(string ?: return this))
+        return this
+    }
+
+    fun updated(updated: OffsetDateTime?): ObjectBuilder {
+        Object.updated = updated
+        return this
+    }
+
+    fun updated(string: String?): ObjectBuilder {
+        updated(OffsetDateTime.parse(string ?: return this))
+        return this
+    }
+
+    fun published(published: OffsetDateTime?): ObjectBuilder {
+        Object.published = published
+        return this
+    }
+
+    fun published(string: String?): ObjectBuilder {
+        published(OffsetDateTime.parse(string ?: return this))
+        return this
+    }
 }
