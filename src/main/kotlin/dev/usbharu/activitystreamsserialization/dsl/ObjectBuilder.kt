@@ -82,6 +82,12 @@ open class ObjectBuilder(
         return this
     }
 
+    fun iconWith(block: ImageBuilder.() -> Unit): ObjectBuilder {
+        val imageBuilder = ImageBuilder(objectFactory, activityBuilder)
+        imageBuilder.block()
+        return icon(imageBuilder.Object)
+    }
+
     fun image(objectOrLink: ImageOrLink?): ObjectBuilder {
         Object.image += objectOrLink ?: return this
         return this
@@ -95,6 +101,13 @@ open class ObjectBuilder(
     fun image(objectOrLinkBuilder: ActivityBuilder.() -> List<ImageOrLink>): ObjectBuilder {
         val objectOrLinkBuilder1 = activityBuilder.objectOrLinkBuilder()
         image(objectOrLinkBuilder1)
+        return this
+    }
+
+    fun imageWith(block: ImageBuilder.() -> Unit = {}): ObjectBuilder {
+        val imageBuilder = ImageBuilder(objectFactory, activityBuilder)
+        imageBuilder.block()
+        image(imageBuilder.Object)
         return this
     }
 
@@ -127,6 +140,7 @@ open class ObjectBuilder(
         return this
     }
 
+    @Deprecated("attributedTo{listOf(Link(\"\"))}を使用してください")
     fun attributedTo(string: String?): ObjectBuilder {
         Object.attributedTo += objectFactory.create(
             JsonObject(

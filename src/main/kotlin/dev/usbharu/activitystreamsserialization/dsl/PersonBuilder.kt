@@ -13,10 +13,8 @@ import java.net.URI
 class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activityBuilder: ActivityBuilder) :
     ObjectBuilder(objectFactory, activityBuilder) {
 
-    val iObj = objectFactory.create<Person>(Type.PERSON)
+    override val Object: Person = objectFactory.create<Person>(Type.PERSON)
 
-    override val Object: Person
-        get() = iObj
 
     fun inbox(uri: URI?): PersonBuilder {
         Object.inbox += uri ?: return this
@@ -26,6 +24,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
     fun inbox(uriList: List<URI?>?): PersonBuilder {
         Object.inbox = uriList.orEmpty().filterNotNull()
         return this
+    }
+
+    fun inbox(string: String?): PersonBuilder {
+        return inbox(URI.create(string ?: return this))
     }
 
     fun outbox(uri: URI?): PersonBuilder {
@@ -38,6 +40,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
         return this
     }
 
+    fun outbox(string: String?): PersonBuilder {
+        return outbox(URI.create(string ?: return this))
+    }
+
     fun following(uri: URI?): PersonBuilder {
         Object.following += uri ?: return this
         return this
@@ -46,6 +52,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
     fun following(uriList: List<URI?>?): PersonBuilder {
         Object.following = uriList.orEmpty().filterNotNull()
         return this
+    }
+
+    fun following(string: String?): PersonBuilder {
+        return following(URI.create(string ?: return this))
     }
 
     fun followers(uri: URI?): PersonBuilder {
@@ -58,6 +68,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
         return this
     }
 
+    fun followers(string: String?): PersonBuilder {
+        return followers(URI.create(string ?: return this))
+    }
+
     fun liked(uri: URI?): PersonBuilder {
         Object.liked += uri ?: return this
         return this
@@ -68,6 +82,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
         return this
     }
 
+    fun liked(string: String?): PersonBuilder {
+        return liked(URI.create(string ?: return this))
+    }
+
     fun streams(uri: URI?): PersonBuilder {
         Object.streams += uri ?: return this
         return this
@@ -76,6 +94,10 @@ class PersonBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activit
     fun streams(uriList: List<URI?>?): PersonBuilder {
         Object.streams = uriList.orEmpty().filterNotNull()
         return this
+    }
+
+    fun streams(string: String?): PersonBuilder {
+        return streams(URI.create(string ?: return this))
     }
 
     fun preferredUsername(langString: LangString?): PersonBuilder {

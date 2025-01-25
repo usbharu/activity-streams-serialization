@@ -8,8 +8,5 @@ import dev.usbharu.activitystreamsserialization.other.create
 
 class NoteBuilder(objectFactory: ObjectFactory = DefaultObjectFactory, activityBuilder: ActivityBuilder) :
     ObjectBuilder(objectFactory, activityBuilder) {
-
-    val iObj = objectFactory.create<Note>(Type.NOTE)
-    override val Object: Note
-        get() = iObj
+    override val Object: Note = objectFactory.create<Note>(Type.NOTE)
 }

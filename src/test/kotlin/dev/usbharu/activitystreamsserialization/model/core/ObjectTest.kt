@@ -160,7 +160,8 @@ class ObjectTest {
     @Test
     fun serializeAttributedTo2() {
         val value = ActivityBuilder().Object {
-            attributedTo("https://example.com")
+//            attributedTo("https://example.com")
+            attributedTo { listOf(Link("https://example.com")) }
         }
 
         assertObjects(

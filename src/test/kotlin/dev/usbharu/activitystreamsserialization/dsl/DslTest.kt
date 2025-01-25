@@ -59,12 +59,8 @@ class DslTest {
                     }
                 )
             }
-            image {
-                listOf(
-                    Image {
-                        url("https://www.examples.com/image")
-                    }
-                )
+            imageWith {
+                url("https://www.examples.com/image")
             }
         }
 
